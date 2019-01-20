@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>models/Guild.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BannedUsers.html">BannedUsers</a></li><li><a href="CategoryChannel.html">CategoryChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CategoryChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Client.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="Client.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="Client.html#createGuild">createGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="Client.html#customLog">customLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#getUser">getUser</a></li><li data-type='method' style='display: none;'><a href="Client.html#initiate">initiate</a></li><li data-type='method' style='display: none;'><a href="Client.html#leaveGuild">leaveGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#log">log</a></li><li data-type='method' style='display: none;'><a href="Client.html#rgbLog">rgbLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#start">start</a></li></ul></li><li><a href="ClientUser.html">ClientUser</a><ul class='methods'><li data-type='method' style='display: none;'><a href="ClientUser.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createMessage">createMessage</a></li></ul></li><li><a href="DMChannel.html">DMChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="DMChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchMessage">patchMessage</a></li></ul></li><li><a href="Guild.html">Guild</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Guild.html#ban">ban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#beginPrune">beginPrune</a></li><li data-type='method' style='display: none;'><a href="Guild.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Guild.html#deleteRole">deleteRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBan">getBan</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBans">getBans</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getChannels">getChannels</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getMember">getMember</a></li><li data-type='method' style='display: none;'><a href="Guild.html#giveRole">giveRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#kick">kick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#leave">leave</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeChannel">makeChannel</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeRole">makeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyChannelPosition">modifyChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyRole">modifyRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#pruneCount">pruneCount</a></li><li data-type='method' style='display: none;'><a href="Guild.html#removeRole">removeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setChannelPosition">setChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setOwnNick">setOwnNick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#softban">softban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#unban">unban</a></li></ul></li><li><a href="GuildChannel.html">GuildChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="GuildChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Shard.html">Shard</a></li><li><a href="Store.html">Store</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Store.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Store.html#filter">filter</a></li><li data-type='method' style='display: none;'><a href="Store.html#find">find</a></li><li data-type='method' style='display: none;'><a href="Store.html#keyArray">keyArray</a></li><li data-type='method' style='display: none;'><a href="Store.html#map">map</a></li><li data-type='method' style='display: none;'><a href="Store.html#random">random</a></li><li data-type='method' style='display: none;'><a href="Store.html#randomKeys">randomKeys</a></li><li data-type='method' style='display: none;'><a href="Store.html#set">set</a></li><li data-type='method' style='display: none;'><a href="Store.html#valueArray">valueArray</a></li></ul></li><li><a href="TextChannel.html">TextChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="TextChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createReaction">createReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getReactions">getReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchMessage">patchMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeAllReactions">removeAllReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessage">removeMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessages">removeMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeReaction">removeReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeUserReaction">removeUserReaction</a></li></ul></li><li><a href="User.html">User</a><ul class='methods'><li data-type='method' style='display: none;'><a href="User.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="User.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="User.html#createMessage">createMessage</a></li></ul></li><li><a href="VoiceChannel.html">VoiceChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="VoiceChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#getInvites">getInvites</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:GUILD_MEMBER_ADD">GUILD_MEMBER_ADD</a></li><li><a href="Client.html#event:GUILD_MEMBER_REMOVE">GUILD_MEMBER_REMOVE</a></li><li><a href="Client.html#event:GUILD_MEMBER_UPDATE">GUILD_MEMBER_UPDATE</a></li><li><a href="Client.html#event:GUILD_ROLE_CREATE">GUILD_ROLE_CREATE</a></li><li><a href="Client.html#event:GUILD_ROLE_DELETE">GUILD_ROLE_DELETE</a></li><li><a href="Client.html#event:GUILD_ROLE_UPDATE">GUILD_ROLE_UPDATE</a></li><li><a href="Client.html#event:PRESENCE_UPDATE">PRESENCE_UPDATE</a></li><li><a href="Client.html#event:READY">READY</a></li><li></li><li></li><li><a href="Client.html#event:SHARD_LOADING">SHARD_LOADING</a></li><li><a href="Client.html#event:SHARD_READY">SHARD_READY</a></li><li></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">models/Guild.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+const BannedUser = require('./BannedUser');
+const Store = require('../utils/Store');
+const UnavailableGuild = require('./UnavailableGuild');
+const TextChannel = require('./TextChannel');
+const VoiceChannel = require('./VoiceChannel');
+const CategoryChannel = require('./CategoryChannel');
+const User = require('./User');
+const Member = require('./Member');
+const Role = require('./Role');
+const { ENDPOINTS } = require('../utils/Constants').HTTP;
+
+/**
+ * @extends UnavailableGuild Represents an available guild on Discord
+ * @prop {GuildChannel?} afkChannel Represents the afk Channel
+ * @prop {Snowflake?} afkChannelID The id of the afk channel
+ * @prop {Boolean} available Whether the guild is available or not
+ * @prop {Store&lt;GuildChannel>} channel A Store of the Channels in the Guild
+ * @prop {Number} createdTimestamp The timestamp in ms when the guild was created
+ * @prop {Number} defaultMessageNotificaions The default message notification for the Guild
+ * @prop {Store&lt;Emoji>} emojis A Store of Guild Emojis
+ * @prop {Array} features An array of guild features
+ * @prop {String?} icon The icon hash of the guild
+ * @prop {String?} iconURL The url of the guild's icon
+ * @prop {Snowflake} id The id of the guild
+ * @prop {Boolean} large Whether the guild is large or not, depends on `Client.largeThreshold`
+ * @prop {Number} memberCount The guilds's member count
+ * @prop {Store&lt;Member>} members The amount of Members that the guild is in
+ * @prop {String} name The name of the guild
+ * @prop {Member?} owner The member object of the guild owner
+ * @prop {Member?} ownerID The id of the guild owner
+ * @prop {Array} presences An array of member presence
+ * @prop {String} region The region of the guild
+ * @prop {Store&lt;Role>} roles A Store of Roles ( Where Roles are cached )
+ * @prop {Object?} systemChannel The system channel of the guild
+ * @prop {Snowflake?} systemChannelID The id of the system channel
+ */
+
+class Guild extends UnavailableGuild {
+  constructor(client, data) {
+    super(client, data);
+    Object.defineProperty(this, 'client', { value: client });
+
+    this.afkChannelID = data.afk_channel_id;
+    this.afkTimeout = data.afk_timeout;
+    this.applicationID = data.application_id;
+    this.channels = new Store();
+    this.createdTimestamp = new Date(data.joined_at).getTime();
+    this.defaultMessageNotificaions = data.default_message_notifications;
+    this.emojis = new Store();
+    this.explicitContentFilter = data.explicit_content_filter;
+    this.features = data.features;
+    this.icon = data.icon || null;
+    this.iconURL = data.icon ? `https://cdn.discordapp.com/icons/${data.id}/${this.icon}.png` : null;
+    this.large = data.large;
+    this.lazy = data.lazy;
+    this.memberCount = data.member_count;
+    this.members = new Store();
+    this.mfaLevel = data.mfa_level;
+    this.name = data.name;
+    this.ownerID = data.owner_id || null;
+    this.presences = data.presences;
+    this.region = data.region;
+    this.roles = new Store();
+    this.shard = data.shard;
+    this.splash = data.splash;
+    this.systemChannelID = data.system_channel_id;
+    this.verificationLevel = data.verification_level;
+    this.voiceStates = data.voice_states;
+
+    for (var i = 0; i &lt; data.channels.length; i++) {
+      data.channels[i].guild = this;
+      switch(data.channels[i].type) {
+        case 0: {
+          this.channels.set(data.channels[i].id, new TextChannel(this.client, data.channels[i]));
+          this.client.channels.set(data.channels[i].id, new TextChannel(this.client, data.channels[i]));
+          break;
+        }
+
+        case 2: {
+          this.channels.set(data.channels[i].id, new VoiceChannel(this.client, data.channels[i]));
+          this.client.channels.set(data.channels[i].id, new VoiceChannel(this.client, data.channels[i]));
+          break;
+        }
+
+        case 4: {
+          this.channels.set(data.channels[i].id, new CategoryChannel(this.client, data.channels[i]));
+          this.client.channels.set(data.channels[i].id, new CategoryChannel(this.client, data.channels[i]));
+          break;
+        }
+
+        default: {
+          this.client.emit('debug', 'Invalid Guild Channel type Received: ' + data.channels[i].type);
+          break;
+        }
+      };
+    };
+
+    for (var i = 0; i &lt; data.roles.length; i++) {
+      this.roles.set(data.roles[i].id, new Role(this.client, data.roles[i]));
+    };
+
+    for (var i = 0; i &lt; data.members.length; i++) {
+      this.client.users.set(data.members[i].user.id, new User(this.client, data.members[i].user));
+      data.members[i].guild = this;
+      this.members.set(data.members[i].user.id, new Member(this.client, data.members[i]));
+    };
+  }
+
+  get afkChannel() {
+    return this.afkChannelID ? this.channels.get(this.afkChannelID) : null;
+  }
+
+  get bans() {
+    return (async () => {
+      return await this.client.rest.request("GET", ENDPOINTS.GUILD_BANS(this.id)).data;
+  })();
+}
+
+  get bot() {
+    return this.members.get(this.client.user.id);
+  }
+
+  get owner() {
+    return this.ownerID ? this.members.get(this.ownerID) : null;
+  }
+
+  get systemChannel() {
+    return this.systemChannelID ? this.channels.get(this.systemChannelID) : null;
+  }
+
+  /**
+   * Bans a member from the guild
+   * @param {Snowflake} user The id of the member to ban
+   * @param {Object} [options] Options for the guild ban
+   * @param {Number} [options.days=0] Number of days to delete messages for
+   * @param {String} [options.reason=''] Reasom for the ban
+   * @returns {Promise&lt;User>}
+   */
+
+  ban(user, options = { days: 0, reason: '' }) {
+    return this.client.rest.request("PUT", `${ENDPOINTS.GUILD_BAN(this.id, user)}?delete-message-days=${options.days}&amp;reason=${options.reason}`)
+    .then(() => {
+      return this.client.getUser(user);
+    });
+  }
+
+  /**
+   * Begins a prune operation. Returns an object with one 'pruned' key indicating the number of members that would be removed in a prune operation.
+   * @param {Number} days Number of days to count prune for (1 or more)
+   * @returns {Promise&lt;Object>}
+   */
+
+  beginPrune(days) {
+    return this.client.rest.request("POST", ENDPOINTS.GUILD_PRUNE(this.id), {
+      data: {
+        days
+      }
+    }).then(res => {
+      return res.data;
+    });
+  }
+
+  /**
+   * Deletes a guild
+   * @returns {Promise&lt;Guild>}
+   */
+
+  delete() {
+    return this.client.rest.request("DELETE", ENDPOINTS.GUILD(this.id))
+    .then(() => {
+      return this;
+    });
+  }
+
+  /**
+   * Deletes a role from the guild
+   * @param {Snowflake} role The id of the role to delete
+   * @returns {Promise&lt;Role>}
+   */
+
+  deleteRole(role) {
+    let Role = this.roles.get(role);
+
+    return this.client.rest.request("DELETE", ENDPOINTS.GUILD_ROLE(this.id, role))
+    .then(() => {
+      return Role;
+    });
+  }
+
+  /**
+   * Gets information about the banned user id
+   * @param {Snowflake} user The id of the banned user
+   * @returns {Promise&lt;BannedUser>}
+   */
+
+  getBan(user) {
+    return this.client.rest.request("GET", ENDPOINTS.GUILD_BAN(this.guild, user))
+    .then(res => {
+      return new BannedUser(this.client, res.data);
+    });
+  }
+
+  /**
+   * Returns an array of banned users
+   * @returns {Promise&lt;Array&lt;BannedUsers>>}
+   */
+
+  getBans() {
+    return this.client.rest.request("GET", ENDPOINTS.GUILD_BANS(this.guild))
+    .then(res => {
+      return res.data.map(data => {
+        return new BannedUser(this.client, data);
+      });
+    });
+  }
+
+  /**
+   * Kicks a member from the guild
+   * @param {Snowflake} user The id of the member to kick
+   * @param {String} reason The reason for the kick
+   * @returns {Promise&lt;User>}
+   */
+
+  kick(user, reason) {
+    return this.client.rest.request("DELETE", `${ENDPOINTS.GUILD_MEMBER(this.id, user)}?reason=${reason}`)
+    .then(() => {
+      return this.client.getUser(user);
+    });
+  }
+
+  /**
+   * Fetch all the guild channels using the REST API and sends an array of channels that were fetched from the cache
+   * @returns {Promise&lt;TextChannel|VoiceChannel|CategoryChannel>}
+   */
+
+  getChannels() {
+    return this.client.rest.request("GET", ENDPOINTS.GUILD_CHANNELS(this.id))
+    .then(res => {
+      return res.data.map(channel => {
+        return this.channels.get(channel.id);
+      });
+    });
+  }
+
+  /**
+   * Returns an array of guild invites
+   * @returns {Promise&lt;Array&lt;Invite>>}
+   */
+
+  getInvites() {
+    return this.client.rest.request("GET", ENDPOINTS.GUILD_INVITES(this.id))
+    .then(res => {
+      return res.data;
+    });
+  }
+
+  /**
+   * Fetches a guild member from the cache, if not present will use the REST API and set it inside the cache
+   * @param {Snowflake} user The id of the member
+   * @returns {Promise&lt;Member>}
+   */
+
+  getMember(user) {
+    return this.client.rest.request("GET", ENDPOINTS.GUILD_MEMBER(this.id, user))
+    .then(res => {
+      if (!this.members.has(res.data.user.id)) {
+        return this.members.set(res.data.user.id, new Member(this.client, res.data));
+      } else {
+        return this.members.get(res.data.user.id);
+      }
+    });
+  }
+
+  /**
+   * Gives a member a role
+   * @param {Snowflake} user The id of the member to give the role
+   * @param {Snowflake} role The role to give to the member
+   * @returns {Promise&lt;Member>}
+   */
+
+  giveRole(user, role) {
+    return this.client.rest.request("PUT", ENDPOINTS.GUILD_MEMBER_ROLE(this.id, user, role))
+    .then(() => {
+      return this.members.get(user);
+    });
+  }
+
+  /**
+   * Similiar to `Client#leaveGuild()`, makes the bot leave the current guild
+   * @returns {Promise&lt;Guild>}
+   */
+
+  async leave() {
+    await this.client.leaveGuild(this.id);
+    
+    return Promise.resolve(this);
+  }
+
+  /**
+   * Creates a Guild Channel
+   * Guild Channel types:
+   * * `text` - Text Channel
+   * * `voice` - Voice Channel
+   * * `category` - Category Channel
+   * @param {String} name The name of the channel
+   * @param {String} [type='text'] The type of the channel
+   * @returns {Promise&lt;TextChannel|VoiceChannel|CategoryChannel>}
+   */
+
+  makeChannel(name, type = 'text') {
+    let types = ['text', 'voice', 'category'];
+
+    if (typeof type !== 'string' || typeof type === 'string' &amp;&amp; !types.includes(type.toLowerCase()))
+      return this.client.emit('error', new Error('Invalid Channel type!'));
+
+    type = type.toLowerCase();
+
+    if (type === 'text') {
+      type = 0;
+    } else if (type === 'voice') {
+      type = 2;
+    } else if (type === 'category') {
+      type = 4;
+    }
+
+    return this.client.rest.request("POST", ENDPOINTS.GUILD_CHANNELS(this.id), {
+      data: {
+        name,
+        type
+      }
+    }).then(res => {
+      return this.channels.get(res.data.id);
+    });
+  }
+
+  /**
+   * Creates a guild role
+   * @param {String} name The name of the role
+   * @param {Boolean} [isHoisted=false] Whether the role should be seperate from the `@everyone` role
+   * @param {Boolean} [isMentionable=false] Whther the role should be mentionable
+   * @returns {Promise&lt;Role>}
+   */
+
+  makeRole(name, isHoisted = false, isMentionable = false) {
+    return this.client.rest.request("POST", ENDPOINTS.GUILD_ROLES(this.id), {
+      data: {
+        name,
+        hoist: isHoisted,
+        mentionable: isMentionable
+      }
+    }).then(res => {
+      return this.roles.get(res.data.id);
+    });
+  }
+
+  /**
+   * Edits a channel's position
+   * @param {Snowflake} channel The id of the channel to set the position of
+   * @param {Number} position The new position of the channel
+   * @returns {Promise&lt;Channel>}
+   */
+
+  modifyChannelPosition(channel, position) {
+    return this.client.rest.request("PATCH", ENDPOINTS.GUILD_CHANNEL(this.id, channel), {
+      data: {
+        id: channel,
+        position
+      }
+    }).then(() => {
+      return this.channels.get(channel);
+    });
+  }
+
+  /**
+   * Edits a guild role
+   * @param {Snowflake} role The id of the role to edit
+   * @param {Object} [options] The options for the role
+   * @param {String} [options.name] The new name of the role
+   * @param {Number} [options.color] The color of the role in RGB Form. e.g `(1, 1, 1)`
+   * @param {Boolean} [options.isHoisted=false] Whether the role should be displayed separately in the sidebar
+   * @param {Boolean} [options.isMentionable=false] Whether the role is mentionable
+   * @returns {Promise&lt;Role>}
+   */
+
+  modifyRole(role, options = {}) {
+    return this.client.rest.request("PATCH", ENDPOINTS.GUILD_ROLE(this.id, role), {
+      data: {
+        name: options.name,
+        color: options.color,
+        hoist: options.isHoisted || false,
+        mentionable: options.isMentionable || false
+      }
+    }).then(() => {
+      return this.roles.get(role);
+    });
+  }
+
+  /**
+   * Returns an object with one 'pruned' key indicating the number of members that would be removed in a prune operation.
+   * @param {Number} days Number of days to count prune for (1 or more)
+   * @returns {Promise&lt;Object>}
+   */
+
+  pruneCount(days) {
+    return this.client.rest.request("GET", ENDPOINTS.GUILD_PRUNE(this.id), {
+      data: {
+        days
+      }
+    }).then(res => {
+      return res.data;
+    });
+  }
+
+  /**
+   * Removes a role from a member
+   * @param {Snowflake} user The id of the user to remove the role from
+   * @param {Snowflake} role The id of the role to remove
+   * @returns {Promise&lt;Member>}
+   */
+
+  removeRole(user, role) {
+    return this.client.rest.request("DELTE", ENDPOINTS.GUILD_MEMBER_ROLE(this.id, user, role))
+    .then(() => {
+      return this.members.get(user);
+    });
+  }
+
+  /**
+   * Edits a channel position
+   * @param {Snowflake} channel The id of the guild channel
+   * @param {Number} position The new position of the channel
+   * @returns {Promise&lt;TextChannel|VoiceChannel|GuildChannel>}
+   */
+
+  setChannelPosition(channel, position) {
+    return this.client.rest.request("PATCH", ENDPOINTS.GUILD_CHANNELS(this.id), {
+      data: {
+        id: channel,
+        position
+      }
+    }).then(() => {
+      return this.channels.get(channel);
+    });
+  }
+
+  /**
+   * Sets the nickname of the client
+   * @param {String} nick The new nickname for the bot
+   * @returns {Promise&lt;Member>}
+   */
+
+  setOwnNick(nick) {
+    return this.client.rest.request("PATCH", ENDPOINTS.GUILD_MEMBER_NICK(this.id, '@me'), {
+      data: {
+        nick
+      }
+    }).then(() => {
+      return this.bot;
+    });
+  }
+
+  /**
+   * Softbans a member from the guild
+   * @param {Snowflake} user The id of the member to softban
+   * @param {String} reason The reason for the softban
+   * @returns {Promise&lt;User>}
+   */
+
+  async softban(user, reason) {
+    this.ban(user, { days: 7, reason });
+    this.unban(user, reason);
+
+    return await this.client.getUser(user);
+  }
+
+  /**
+   * Unbans a member from the guild
+   * @param {Snowflake} user The id of the member to unban
+   * @param {String} reason The reason for the unban
+   * @returns {Promise&lt;User>}
+   */
+
+  unban(user, reason) {
+    return this.client.rest.request("DELETE", `${ENDPOINTS.GUILD_BAN(this.id, user)}?reason=${reason}`)
+    .then(() => {
+      return this.client.getUser(user);
+    });
+  }
+};
+
+module.exports = Guild;</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 13:13:15 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/jquery-3.1.1.min.js"></script>
+
+<script src="scripts/search.js"></script>
+
+
+<script src="scripts/collapse.js"></script>
+
+
+
+</body>
+</html>

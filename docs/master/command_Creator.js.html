@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>command/Creator.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BannedUsers.html">BannedUsers</a></li><li><a href="CategoryChannel.html">CategoryChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CategoryChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Client.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="Client.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="Client.html#createGuild">createGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="Client.html#customLog">customLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#getUser">getUser</a></li><li data-type='method' style='display: none;'><a href="Client.html#initiate">initiate</a></li><li data-type='method' style='display: none;'><a href="Client.html#leaveGuild">leaveGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#log">log</a></li><li data-type='method' style='display: none;'><a href="Client.html#rgbLog">rgbLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#start">start</a></li></ul></li><li><a href="ClientUser.html">ClientUser</a><ul class='methods'><li data-type='method' style='display: none;'><a href="ClientUser.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createMessage">createMessage</a></li></ul></li><li><a href="DMChannel.html">DMChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="DMChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchMessage">patchMessage</a></li></ul></li><li><a href="Guild.html">Guild</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Guild.html#ban">ban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#beginPrune">beginPrune</a></li><li data-type='method' style='display: none;'><a href="Guild.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Guild.html#deleteRole">deleteRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBan">getBan</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBans">getBans</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getChannels">getChannels</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getMember">getMember</a></li><li data-type='method' style='display: none;'><a href="Guild.html#giveRole">giveRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#kick">kick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#leave">leave</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeChannel">makeChannel</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeRole">makeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyChannelPosition">modifyChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyRole">modifyRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#pruneCount">pruneCount</a></li><li data-type='method' style='display: none;'><a href="Guild.html#removeRole">removeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setChannelPosition">setChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setOwnNick">setOwnNick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#softban">softban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#unban">unban</a></li></ul></li><li><a href="GuildChannel.html">GuildChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="GuildChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Shard.html">Shard</a></li><li><a href="Store.html">Store</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Store.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Store.html#filter">filter</a></li><li data-type='method' style='display: none;'><a href="Store.html#find">find</a></li><li data-type='method' style='display: none;'><a href="Store.html#keyArray">keyArray</a></li><li data-type='method' style='display: none;'><a href="Store.html#map">map</a></li><li data-type='method' style='display: none;'><a href="Store.html#random">random</a></li><li data-type='method' style='display: none;'><a href="Store.html#randomKeys">randomKeys</a></li><li data-type='method' style='display: none;'><a href="Store.html#set">set</a></li><li data-type='method' style='display: none;'><a href="Store.html#valueArray">valueArray</a></li></ul></li><li><a href="TextChannel.html">TextChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="TextChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createReaction">createReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getReactions">getReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchMessage">patchMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeAllReactions">removeAllReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessage">removeMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessages">removeMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeReaction">removeReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeUserReaction">removeUserReaction</a></li></ul></li><li><a href="User.html">User</a><ul class='methods'><li data-type='method' style='display: none;'><a href="User.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="User.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="User.html#createMessage">createMessage</a></li></ul></li><li><a href="VoiceChannel.html">VoiceChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="VoiceChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#getInvites">getInvites</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:GUILD_MEMBER_ADD">GUILD_MEMBER_ADD</a></li><li><a href="Client.html#event:GUILD_MEMBER_REMOVE">GUILD_MEMBER_REMOVE</a></li><li><a href="Client.html#event:GUILD_MEMBER_UPDATE">GUILD_MEMBER_UPDATE</a></li><li><a href="Client.html#event:GUILD_ROLE_CREATE">GUILD_ROLE_CREATE</a></li><li><a href="Client.html#event:GUILD_ROLE_DELETE">GUILD_ROLE_DELETE</a></li><li><a href="Client.html#event:GUILD_ROLE_UPDATE">GUILD_ROLE_UPDATE</a></li><li><a href="Client.html#event:PRESENCE_UPDATE">PRESENCE_UPDATE</a></li><li><a href="Client.html#event:READY">READY</a></li><li></li><li></li><li><a href="Client.html#event:SHARD_LOADING">SHARD_LOADING</a></li><li><a href="Client.html#event:SHARD_READY">SHARD_READY</a></li><li></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">command/Creator.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const Client = require('../client/Client');
+const Store = require('../utils/Store');
+
+class CommandCreator extends Client {
+  constructor(options = {}) {
+    super(options);
+
+    this.showWarnings = options.showWarnings || true;
+    this._commands = new Store();
+    this.defaultPrefix = options.defaultPrefix || '!';
+    this.owners = options.owners || [];
+    this.customPrefix = options.customPrefix || false;
+
+    let depo = null;
+
+    if (this.customPrefix) {
+      try {
+        require('depo');
+        depo = true;
+        this.db = new (require('depo')).Database({ name: 'jcord' });
+      } catch(error) {
+        depo = null;
+        this.emit('error', new Error(`
+If you would want to get the current guild prefix,
+please install "depo"
+Note: Please install the master version by doing:
+"npm install boltxyz/depo"`));
+      }
+    }
+    
+    if (!Array.isArray(this.owners)) return this.emit('error', new Error('CommandCreator#owners must be an array!'));
+    
+    this.on('MESSAGE_CREATE', async (msg) => {
+      if (depo &amp;&amp; msg.channel.guild &amp;&amp; !await this.db.has(msg.channel.guild.id)) {
+      await this.db.set(msg.channel.guild.id, { prefix: this.defaultPrefix });
+      }
+
+      let settings = await this.db.get(msg.channel.guild.id);
+
+      if (msg.content.indexOf(settings.prefix) !== 0) return;
+
+      const args = msg.content.slice(settings.prefix.length).split(/ +/g);
+      const cmd = args.shift().toLowerCase();
+
+      let commandData = this._commands.get(cmd) || this._commands.find(c => c.aliases &amp;&amp; c.aliases.includes(cmd));
+
+      if (!commandData) return;
+
+      let argsData = {};
+
+      for (var i = 0; i &lt; commandData.args.length; i++) {
+        if (commandData.args[i].type === 'number' &amp;&amp; (!args[i] || isNaN(args[i]))) {
+          return msg.channel.createMessage(commandData.args[i].prompt);
+        } else if (commandData.args[i].type === 'string' &amp;&amp; (!args[i] || typeof args[i] !== 'string')) {
+          return msg.channel.createMessage(commandData.args[i].prompt);
+        } else if (commandData.args[i].type === 'user') {
+          let filteredTypes = commandData.args.filter(data => data.type === 'user');
+          
+          for (var c = 0; c &lt; filteredTypes.length; c++) {
+            if (!args[i] || !msg.mentions[c]) {
+              return msg.channel.createMessage(filteredTypes[c].prompt);
+            }
+          };
+        } else if (commandData.args[i].type === 'channel') {
+          let filteredTypes = commandData.args.filter(data => data.type === 'channel');
+          
+          for (var c = 0; c &lt; filteredTypes.length; c++) {
+            if (!args[i] || !msg.channelMentions[c]) {
+              return msg.channel.createMessage(filteredTypes[c].prompt);
+            }
+          };
+        } else if (commandData.args[i].type === 'role') {
+          let filteredTypes = commandData.args.filter(data => data.type === 'role');
+          
+          for (var c = 0; c &lt; filteredTypes.length; c++) {
+            if (!args[i] || !msg.roleMentions[c]) {
+              return msg.channel.createMessage(filteredTypes[c].prompt);
+            }
+          };
+        } else if (commandData.args[i].type === 'user_id' &amp;&amp; (!args[i] || this.users.get(args[i]))) {
+          return msg.channel.createMessage(commandData.args[i].prompt);
+        } else if (commandData.args[i].type === 'channel_id' &amp;&amp; (!args[i] || this.channels.get(args[i]))) {
+          return msg.channel.createMessage(commandData.args[i].prompt);
+        } else if (commandData.args[i].type === 'role_id' &amp;&amp; (!args[i] || msg.channel.guild &amp;&amp; msg.channel.guild.roles.get(args[i]))) {
+          return msg.channel.createMessage(commandData.args[i].prompt);
+        } else if (commandData.args[i].type === 'guild_id' &amp;&amp; (!args[i] || this.guilds.get(args[i]))) {
+          return msg.channel.createMessage(commandData.args[i].prompt);
+        }
+      };
+
+      for (var i = 0; i &lt; commandData.args.length; i++) {
+        argsData[commandData.args[i].key] = args[i];
+      };
+
+      if (Array.isArray(commandData.reply)) {
+        commandData.reply = commandData.reply[Math.floor(Math.random() * commandData.reply.length)];
+      } else if (typeof commandData.reply === 'object' &amp;&amp; reply.hasOwnProperty('reply')) {
+        commandData.reply = commandData.reply.reply;
+      } else if (typeof commandData.reply === 'string') {
+        commandData.reply = commandData.reply;
+      } else if (typeof commandData.reply === 'function') {
+        commandData.reply = commandData.reply;
+      } else {
+        return this.emit('error', new Error('Invalid type of Parameter &lt;reply>'));
+      };
+
+      if (commandData.guildOnly &amp;&amp; !msg.channel.guild || commandData.dmOnly &amp;&amp; msg.channel.type !== 'dm') return;
+      if (commandData.ownerOnly &amp;&amp; !this.owners.includes(msg.author.id)) return msg.channel.createMessage(`This is an owner only command!`);
+
+      return typeof commandData.reply === 'function' ? commandData.reply.bind(null, msg, argsData)() : msg.channel.createMessage(commandData.reply);
+    });
+  }
+
+  /**
+   * Adds a new owner for the bot
+   * This will add a new owner for the current cache, you can use a database
+   * to make this persistent, but for this request, it will only save to the current session.
+   * We will try to add a way to make this persistent.
+   * @param {Snowflake} owner The id of the owner to add
+   * @returns {Array&lt;Snowflake>} The array of owners
+   */
+
+  addOwner(owner) {
+    this.owners.push(owner);
+    return this.owners;
+  }
+
+  /**
+   * Deletes a Created Command
+   * @param {String} name The name of the command to delete
+   * @returns {Command}
+   */
+
+  deleteCommand(name) {
+    return this._commands.has(name) ? this._commands.delete(name) : this.emit('error', new Error('Invalid command!'));
+  }
+
+  /**
+   * Creates an executable command
+   * * If the reply parameter is an Array, it will choose a random element from the array to send
+   * * If the reply parameter is an Object, you need to add a "reply" property
+   * * If the reply parameter is a String, it will send that string
+   * * If the reply parameter is a Function, it will not send a message by default.
+   * It means that if you supply a Function, it would do what the function says it would do
+   * instead of sending the message. You can still send messages with a function, but you need to do it
+   * inside the function.
+   * @param {String} name 
+   * @param {String|Array|Object|Function} reply What the bot will do or reply once this command is triggered
+   * @returns {Command}
+   */
+
+  registerCommand(name, reply, options = {}) {
+    if (typeof name !== 'string')
+      return this.emit('error', new Error('Parameter &lt;name> was not a string!'));
+
+    let commandData = {
+      args: options.args || [],
+      guildOnly: options.guildOnly || false, 
+      hidden: options.hidden || false, 
+      description: options.description || 'A Command', 
+      aliases: options.aliases || [],
+      dmOnly: options.dmOnly || false,
+      ownerOnly: options.ownerOnly || false,
+      reply
+    };
+
+    name = name.toLowerCase();
+
+    for (var i = 0; i &lt; commandData.args.length; i++) {
+      if ((typeof commandData.args[i] !== 'object' &amp;&amp; !Array.isArray(commandData.args[i])) ||
+      !commandData.args[i].hasOwnProperty('key') ||
+      !commandData.args[i].hasOwnProperty('prompt') ||
+      !commandData.args[i].hasOwnProperty('type')) {
+        return this.emit('error', new Error(`The argument options at position ${i} was invalid!`));
+      } else {
+        commandData.args[i].key = commandData.args[i].key.toLowerCase();
+        commandData.args[i].type = commandData.args[i].type.toLowerCase();
+      }
+    };
+
+    if (Array.isArray(reply)) {
+      this._commands.set(name, commandData);
+      return { name, commandData };
+    } else if (typeof reply === 'object') {
+      if (!reply.hasOwnProperty('reply')) return this.emit('error', new Error('Since reply is a Object, please add a "reply" property! Here is an example:\n{ reply: "Hi!" }'))
+      this._commands.set(name, commandData);
+      return { name, commandData };
+    } else if (typeof reply === 'string') {
+      this._commands.set(name, commandData);
+      return { name, commandData };
+    } else if (typeof reply === 'function') {
+      this._commands.set(name, commandData);
+      return { name, commandData };
+    } else {
+      this.emit('error', new Error('Invalid type of Parameter &lt;reply>'));
+    }
+  }
+
+  /**
+   * Registers a custom prefix for the guild
+   * @param {Snowflake} guild The id of the guild
+   * @param {String} prefix The new custom prefix
+   * @returns {Void}
+   */
+
+  registerGuildPrefix(guild, prefix) {
+    if (!this.customPrefix) {
+      this.emit('error', new Error('You can\'t use this function if CommandCreator#customPrefix is not true!'));
+      return false;
+    }
+
+    this.db.set(guild, { prefix });
+    return true;
+  }
+
+  /**
+   * Removes an owner id from the list of owners in the cache
+   * @param {Snowflake} owner The id of the owner to remove
+   * @returns {Boolean}
+   */
+
+  removeOwner(owner) {
+    let index = this.owners.indexOf(owner);
+
+    if (index &lt;= -1) {
+      return false;
+    } else {
+      this.owners.splice(index, 1);
+      return true;
+    };
+  }
+};
+
+module.exports = CommandCreator;</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 13:13:15 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/jquery-3.1.1.min.js"></script>
+
+<script src="scripts/search.js"></script>
+
+
+<script src="scripts/collapse.js"></script>
+
+
+
+</body>
+</html>

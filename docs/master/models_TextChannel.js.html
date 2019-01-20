@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>models/TextChannel.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BannedUsers.html">BannedUsers</a></li><li><a href="CategoryChannel.html">CategoryChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CategoryChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Client.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="Client.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="Client.html#createGuild">createGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="Client.html#customLog">customLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#getUser">getUser</a></li><li data-type='method' style='display: none;'><a href="Client.html#initiate">initiate</a></li><li data-type='method' style='display: none;'><a href="Client.html#leaveGuild">leaveGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#log">log</a></li><li data-type='method' style='display: none;'><a href="Client.html#rgbLog">rgbLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#start">start</a></li></ul></li><li><a href="ClientUser.html">ClientUser</a><ul class='methods'><li data-type='method' style='display: none;'><a href="ClientUser.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createMessage">createMessage</a></li></ul></li><li><a href="DMChannel.html">DMChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="DMChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchMessage">patchMessage</a></li></ul></li><li><a href="Guild.html">Guild</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Guild.html#ban">ban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#beginPrune">beginPrune</a></li><li data-type='method' style='display: none;'><a href="Guild.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Guild.html#deleteRole">deleteRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBan">getBan</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBans">getBans</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getChannels">getChannels</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getMember">getMember</a></li><li data-type='method' style='display: none;'><a href="Guild.html#giveRole">giveRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#kick">kick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#leave">leave</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeChannel">makeChannel</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeRole">makeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyChannelPosition">modifyChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyRole">modifyRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#pruneCount">pruneCount</a></li><li data-type='method' style='display: none;'><a href="Guild.html#removeRole">removeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setChannelPosition">setChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setOwnNick">setOwnNick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#softban">softban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#unban">unban</a></li></ul></li><li><a href="GuildChannel.html">GuildChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="GuildChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Shard.html">Shard</a></li><li><a href="Store.html">Store</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Store.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Store.html#filter">filter</a></li><li data-type='method' style='display: none;'><a href="Store.html#find">find</a></li><li data-type='method' style='display: none;'><a href="Store.html#keyArray">keyArray</a></li><li data-type='method' style='display: none;'><a href="Store.html#map">map</a></li><li data-type='method' style='display: none;'><a href="Store.html#random">random</a></li><li data-type='method' style='display: none;'><a href="Store.html#randomKeys">randomKeys</a></li><li data-type='method' style='display: none;'><a href="Store.html#set">set</a></li><li data-type='method' style='display: none;'><a href="Store.html#valueArray">valueArray</a></li></ul></li><li><a href="TextChannel.html">TextChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="TextChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createReaction">createReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getReactions">getReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchMessage">patchMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeAllReactions">removeAllReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessage">removeMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessages">removeMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeReaction">removeReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeUserReaction">removeUserReaction</a></li></ul></li><li><a href="User.html">User</a><ul class='methods'><li data-type='method' style='display: none;'><a href="User.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="User.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="User.html#createMessage">createMessage</a></li></ul></li><li><a href="VoiceChannel.html">VoiceChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="VoiceChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#getInvites">getInvites</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:GUILD_MEMBER_ADD">GUILD_MEMBER_ADD</a></li><li><a href="Client.html#event:GUILD_MEMBER_REMOVE">GUILD_MEMBER_REMOVE</a></li><li><a href="Client.html#event:GUILD_MEMBER_UPDATE">GUILD_MEMBER_UPDATE</a></li><li><a href="Client.html#event:GUILD_ROLE_CREATE">GUILD_ROLE_CREATE</a></li><li><a href="Client.html#event:GUILD_ROLE_DELETE">GUILD_ROLE_DELETE</a></li><li><a href="Client.html#event:GUILD_ROLE_UPDATE">GUILD_ROLE_UPDATE</a></li><li><a href="Client.html#event:PRESENCE_UPDATE">PRESENCE_UPDATE</a></li><li><a href="Client.html#event:READY">READY</a></li><li></li><li></li><li><a href="Client.html#event:SHARD_LOADING">SHARD_LOADING</a></li><li><a href="Client.html#event:SHARD_READY">SHARD_READY</a></li><li></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">models/TextChannel.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+const Message = require('../models/Message');
+const GuildChannel = require('./GuildChannel');
+const { ENDPOINTS } = require('../utils/Constants').HTTP;
+const Store = require('../utils/Store');
+
+/**
+ * @extends GuildChannel Represens a Guild Text Channel.
+ * @prop {Number} rateLimitPerUser Amount of seconds a user has to wait before sending another message (0-120); bots, as well as users with the permission `manage_messages` or `manage_channel`, are unaffected
+ * @prop {String?} topic The topic of the text channel.
+ * @prop {Snowflake?} lastMessageID The id of the last message sent
+ * @prop {String} mention The mention for the channel
+ * @prop {Store?} messages The messages of the channel stored in the cache.
+ * @prop {Snowflake?} parentID The id of the category the channel is in
+ * @prop {Object?} parent The category the channel is in
+ */
+
+class TextChannel extends GuildChannel {
+  constructor(client, data) {
+    super(client, data);
+    Object.defineProperty(this, 'client', { value: client });
+
+    this.rateLimitPerUser = data.rate_limit_per_user;
+    this.topic = data.topic || null;
+    this.lastMessageID = data.last_message_id || null;
+    this.mention = `&lt;#${this.id}>`;
+    this.messages = new Store();
+    this.nsfw = data.nsfw;
+    this.parentID = data.parent_id || null;
+  }
+
+  get parent() {
+    return this.parentID ? this.client.channels.get(this.parentID) : null;
+  }
+
+  /**
+   * Creates an embed to the channel
+   * @param {Object} embed The embed to send
+   * @returns {Promise&lt;Message>}
+   */
+
+  createEmbed(embed) {
+    return this.client.createEmbed(this.id, embed);
+  }
+
+  /**
+   * Similar to `Client#createMessage()`
+   * Creates a message to the channel
+   * @param {String} content The content of the message
+   * @returns {Promise&lt;Message>}
+   */
+
+  createMessage(content) {
+    return this.client.createMessage(this.id, content);
+  }
+
+  /**
+   * Add a reaction to a message
+   * @param {Snowflake} message The id of the message to add a reaction to
+   * @param {String} emoji The unicode of the emoji or for custom emojis, use `name:id`
+   * * For emojis that aren't custom, you need to get their unicode by doing: \:emojiname:
+   * for example, \:thinking: will give '🤔', then use it to react. While for customs, just do `name:id`
+   * @returns {Promise&lt;Message>}
+   */
+
+  async createReaction(message, emoji) {
+    await this.client.rest.request("PUT", ENDPOINTS.CHANNEL_REACTION(this.id, message, encodeURI(emoji), '@me'));
+
+    let msg = await this.getMessage(message);
+    return msg;
+  }
+
+  /**
+   * Fetch a single message
+   * If `Client#storeMessages` is true, it will try to fetch the message in the cache. And if it failed
+   * it would fetch the message through Discord's REST API And set it in the cache.
+   * Otherwise, if it's false, it would just fetch the message through Discord's REST API
+   * @param {Snowflake} message The id of the message to fetch
+   * @returns {Promise&lt;Message>}
+   */
+
+  getMessage(message) {
+    if (this.client.storeMessages) {
+      if (!this.messages.has(message)) {
+        return this.client.rest.request("GET", ENDPOINTS.CHANNEL_MESSAGE(this.id, message))
+        .then(res => {
+          return this.messages.set(res.data.id, new Message(this.client, res.data));
+        });
+      } else {
+        return new Promise((resolve, reject) => {
+          return resolve(this.messages.get(message));
+        })
+      };
+    } else {
+      return this.client.rest.request("GET", ENDPOINTS.CHANNEL_MESSAGE(this.id, message))
+      .then(res => {
+        return new Message(this.client, res.data);
+      });
+    };
+  }
+
+  /**
+   * Fetches messages for the channel
+   * @param {Object} options Query options for fetching Message
+   * @param {Number} [options.limit=50] Maximum amount of messages to fetch
+   * @param {Snowflake} [options.after] Get messages after this message id
+   * @param {Snowflake} [options.around] Get messages around this message id
+   * @param {Snowfalke} [options.before] Get messages before this message id
+   * @returns {Promise&lt;Array&lt;Message>>}
+   */
+
+  getMessages(options = { limit: 50 }) {
+    var query = [];
+
+    if (options.before &amp;&amp; typeof options.before === 'string')
+      query.push(`&amp;before=${options.before}`)
+
+    if (options.after &amp;&amp; typeof options.after === 'string')
+      query.push(`&amp;after=${options.after}`)
+
+    if (options.around &amp;&amp; typeof options.around === 'string')
+      query.push(`&amp;around=${options.around}`)
+
+    return this.client.rest.request("GET", `${ENDPOINTS.CHANNEL_MESSAGES(this.id)}?limit=${options.limit}${query.join('')}`)
+    .then(res => {
+      return res.data.map(message => {
+        if (this.client.storeMessages) {
+          if (!this.messages.has(message.id)) {
+            return this.messages.set(message.id, new Message(this.client, message));
+          } else {
+            return this.messages.get(message.id);
+          };
+        } else {
+          return new Message(this.client, message);
+        }
+      });
+    });
+  }
+
+  /**
+   * Fetches all the pinned messages in the channel
+   * @return {Promise&lt;Array&lt;Message>>}
+   */
+
+  getPinnedMessages() {
+    return this.client.rest.request("GET", ENDPOINTS.CHANNEL_PINNED_MESSAGES(this.id))
+    .then(res => {
+      return res.data.map(message => {
+        if (this.client.storeMessages) {
+          if (!this.messages.has(message.id)) {
+            this.messages.set(message.id, new Message(this.client, message));
+          } else {
+            this.messages.get(message.id);
+          };
+        } else {
+          return new Message(this.client, message);
+        }
+      });
+    });
+  }
+
+  /**
+   * Get a list of users that reacted with the given emoji
+   * @param {Snowflake} message The id of the message that has the reactions
+   * @param {String} emoji The emoji that the users reacted to
+   * @param {Object} [options] options for the fetch
+   * @returns {Promise&lt;Array&lt;User>>}
+   */
+
+  getReactions(message, emoji, options = {}) {
+    var query = [];
+
+    if (options.before &amp;&amp; typeof options.before === 'string')
+      query.push(`&amp;before=${options.before}`)
+
+    if (options.after &amp;&amp; typeof options.after === 'string')
+      query.push(`&amp;after=${options.after}`)
+
+    return this.client.rest.request("GET", `${ENDPOINTS.CHANNEL_REACTION(this.id, message, encodeURI(emoji), '')}${query.join('')}`)
+    .then(res => {
+      return res.data.map(async user => {
+        return await this.client.getUser(user.id);
+      });
+    });
+  }
+
+  /**
+   * Edits a message's embed, not content!
+   * @param {Snowflake} message The id of the message to edit
+   * @param {String} content The new embed of the message, not content!
+   * @returns {Promise&lt;Message>}
+   */
+
+  patchEmbed(message, embed) {
+    return this.client.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(this.id, message), {
+      data: {
+        embed: embed.hasOwnProperty('embed') ? embed.embed : embed
+      }
+    }).then(res => {
+      return new Message(this.client, res.data);
+    });
+  }
+
+  /**
+   * Edits a message's content, not embed!
+   * @param {Snowflake} message The id of the message to edit
+   * @param {String} content The new content of the message, not embed!
+   * @returns {Promise&lt;Message>}
+   */
+
+  patchMessage(message, content) {
+    return this.client.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(this.id, message), {
+      data: {
+        content
+      }
+    }).then(res => {
+      return new Message(this.client, res.data);
+    });
+  }
+
+  /**
+   * Removes all reactions from the message
+   * @param {Snowflake} message The id of the message you will remove all reactions from
+   * @returns {Promise&lt;Message>}
+   */
+
+  removeAllReactions(message) {
+    return this.client.rest.request("DELETE", ENDPOINTS.CHANNEL_REACTIONS(this.id, message))
+    .then(async () => {
+      return await this.getMessage(message);
+    })
+  }
+
+  /**
+   * Deletes a single message
+   * @param {Snowflake} message The id of the message deleted
+   * @param {Number} timeout The amount of time to wait before deleting the message in ms
+   * @returns {Void} Would return "{ deleted: true }" if it got deleted
+   */
+
+  removeMessage(message, timeout = 0) {
+    setTimeout(() => {
+      return this.client.rest.request("DELETE", ENDPOINTS.CHANNEL_MESSAGE(this.id, message));
+    }, timeout);
+  }
+
+  /**
+   * Delete multiple messages in the channel
+   * * Minimum messages to delete: `1`, Maximum: `100`
+   * @param {Number} [limit=50] The amount of messages to delete
+   */
+
+  async removeMessages(limit = 50) {
+    if (limit === 0) {
+      return Promise.resolve();
+    };
+
+    if (limit === 1) {
+      let msg = await this.getMessages({ limit: 1 });
+      this.removeMessage(msg[0].id);
+      return msg[0];
+    };
+
+    if (limit > 100) return this.client.emit('error', new Error('Too many messages to delete!'));
+
+    let msg = await this.getMessages({ limit });
+    return this.client.rest.request("POST", ENDPOINTS.CHANNEL_BULKDELETE(this.id), {
+      data: {
+        messages: msg.map(m => m.id)
+      }
+    }).then(() => {
+      return msg;
+    });
+  }
+
+  /**
+   * Deletes a reaction from a message
+   * @param {Snowflake} message The id of the message to remove a reaction from
+   * @param {String} emoji The unicode of the emoji or for custom emojis, use `name:id`
+   * * For emojis that aren't custom, you need to get their unicode by doing: \:emojiname:
+   * for example, \:thinking: will give '🤔', then use it to react. While for customs, just do `name:id`
+   * @returns {Promise&lt;Message>}
+   */
+
+  async removeReaction(message, emoji) {
+    await this.client.rest.request("DELETE", ENDPOINTS.CHANNEL_REACTION(this.id, message, encodeURI(emoji), '@me'));
+
+    let msg = await this.getMessage(message);
+    return msg;
+  }
+
+  /**
+   * Deletes a user's reaction from a message
+   * @param {Snowflake} user The id of the user that added the reaction
+   * @param {Snowflake} message The id of the message to remove a reaction from
+   * @param {String} emoji The unicode of the emoji or for custom emojis, use `name:id`
+   * * For emojis that aren't custom, you need to get their unicode by doing: \:emojiname:
+   * for example, \:thinking: will give '🤔', then use it to react. While for customs, just do `name:id`
+   * @returns {Promise&lt;Message>}
+   */
+
+  async removeUserReaction(user, message, emoji) {
+    await this.client.rest.request("DELETE", ENDPOINTS.CHANNEL_REACTION(this.id, message, encodeURI(emoji), user));
+
+    let msg = await this.getMessage(message);
+    return msg;
+  }
+};
+
+module.exports = TextChannel;</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 13:13:15 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/jquery-3.1.1.min.js"></script>
+
+<script src="scripts/search.js"></script>
+
+
+<script src="scripts/collapse.js"></script>
+
+
+
+</body>
+</html>

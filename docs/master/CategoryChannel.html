@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>CategoryChannel - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BannedUsers.html">BannedUsers</a></li><li><a href="CategoryChannel.html">CategoryChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CategoryChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="CategoryChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Client.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="Client.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="Client.html#createGuild">createGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="Client.html#customLog">customLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#getUser">getUser</a></li><li data-type='method' style='display: none;'><a href="Client.html#initiate">initiate</a></li><li data-type='method' style='display: none;'><a href="Client.html#leaveGuild">leaveGuild</a></li><li data-type='method' style='display: none;'><a href="Client.html#log">log</a></li><li data-type='method' style='display: none;'><a href="Client.html#rgbLog">rgbLog</a></li><li data-type='method' style='display: none;'><a href="Client.html#start">start</a></li></ul></li><li><a href="ClientUser.html">ClientUser</a><ul class='methods'><li data-type='method' style='display: none;'><a href="ClientUser.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="ClientUser.html#createMessage">createMessage</a></li></ul></li><li><a href="DMChannel.html">DMChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="DMChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="DMChannel.html#patchMessage">patchMessage</a></li></ul></li><li><a href="Guild.html">Guild</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Guild.html#ban">ban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#beginPrune">beginPrune</a></li><li data-type='method' style='display: none;'><a href="Guild.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Guild.html#deleteRole">deleteRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBan">getBan</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getBans">getBans</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getChannels">getChannels</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="Guild.html#getMember">getMember</a></li><li data-type='method' style='display: none;'><a href="Guild.html#giveRole">giveRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#kick">kick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#leave">leave</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeChannel">makeChannel</a></li><li data-type='method' style='display: none;'><a href="Guild.html#makeRole">makeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyChannelPosition">modifyChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#modifyRole">modifyRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#pruneCount">pruneCount</a></li><li data-type='method' style='display: none;'><a href="Guild.html#removeRole">removeRole</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setChannelPosition">setChannelPosition</a></li><li data-type='method' style='display: none;'><a href="Guild.html#setOwnNick">setOwnNick</a></li><li data-type='method' style='display: none;'><a href="Guild.html#softban">softban</a></li><li data-type='method' style='display: none;'><a href="Guild.html#unban">unban</a></li></ul></li><li><a href="GuildChannel.html">GuildChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="GuildChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="GuildChannel.html#getInvites">getInvites</a></li></ul></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Shard.html">Shard</a></li><li><a href="Store.html">Store</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Store.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="Store.html#filter">filter</a></li><li data-type='method' style='display: none;'><a href="Store.html#find">find</a></li><li data-type='method' style='display: none;'><a href="Store.html#keyArray">keyArray</a></li><li data-type='method' style='display: none;'><a href="Store.html#map">map</a></li><li data-type='method' style='display: none;'><a href="Store.html#random">random</a></li><li data-type='method' style='display: none;'><a href="Store.html#randomKeys">randomKeys</a></li><li data-type='method' style='display: none;'><a href="Store.html#set">set</a></li><li data-type='method' style='display: none;'><a href="Store.html#valueArray">valueArray</a></li></ul></li><li><a href="TextChannel.html">TextChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="TextChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#createReaction">createReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getInvites">getInvites</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessage">getMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getMessages">getMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getPinnedMessages">getPinnedMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#getReactions">getReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchEmbed">patchEmbed</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#patchMessage">patchMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeAllReactions">removeAllReactions</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessage">removeMessage</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeMessages">removeMessages</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeReaction">removeReaction</a></li><li data-type='method' style='display: none;'><a href="TextChannel.html#removeUserReaction">removeUserReaction</a></li></ul></li><li><a href="User.html">User</a><ul class='methods'><li data-type='method' style='display: none;'><a href="User.html#createDM">createDM</a></li><li data-type='method' style='display: none;'><a href="User.html#createEmbed">createEmbed</a></li><li data-type='method' style='display: none;'><a href="User.html#createMessage">createMessage</a></li></ul></li><li><a href="VoiceChannel.html">VoiceChannel</a><ul class='methods'><li data-type='method' style='display: none;'><a href="VoiceChannel.html#changePermissions">changePermissions</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#close">close</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#createInvite">createInvite</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#delete">delete</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#edit">edit</a></li><li data-type='method' style='display: none;'><a href="VoiceChannel.html#getInvites">getInvites</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:GUILD_MEMBER_ADD">GUILD_MEMBER_ADD</a></li><li><a href="Client.html#event:GUILD_MEMBER_REMOVE">GUILD_MEMBER_REMOVE</a></li><li><a href="Client.html#event:GUILD_MEMBER_UPDATE">GUILD_MEMBER_UPDATE</a></li><li><a href="Client.html#event:GUILD_ROLE_CREATE">GUILD_ROLE_CREATE</a></li><li><a href="Client.html#event:GUILD_ROLE_DELETE">GUILD_ROLE_DELETE</a></li><li><a href="Client.html#event:GUILD_ROLE_UPDATE">GUILD_ROLE_UPDATE</a></li><li><a href="Client.html#event:PRESENCE_UPDATE">PRESENCE_UPDATE</a></li><li><a href="Client.html#event:READY">READY</a></li><li></li><li></li><li><a href="Client.html#event:SHARD_LOADING">SHARD_LOADING</a></li><li><a href="Client.html#event:SHARD_READY">SHARD_READY</a></li><li></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">CategoryChannel</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        CategoryChannel
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+
+    <h4 class="name" id="CategoryChannel"><span class="type-signature"></span>new CategoryChannel<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_CategoryChannel.js.html">models/CategoryChannel.js</a>, <a href="models_CategoryChannel.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>children</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Returns an array of channels that has the category as it's parent</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="GuildChannel.html">GuildChannel</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="changePermissions"><span class="type-signature"></span>changePermissions<span class="signature">(userOrRole, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Member.html">Member</a>|Role)>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_GuildChannel.js.html">models/GuildChannel.js</a>, <a href="models_GuildChannel.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="GuildChannel.html#changePermissions">GuildChannel#changePermissions</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Edits the channel permission for the user or role</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userOrRole</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Snowflake</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the user or role</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Options for the permission change</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>allow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the permission to allow for the role or user</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>deny</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the permission to deny for the role or user</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>&quot;member&quot; for a user or &quot;role&quot; for a role</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(<a href="Member.html">Member</a>|Role)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="close"><span class="type-signature"></span>close<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="TextChannel.html">TextChannel</a>|<a href="VoiceChannel.html">VoiceChannel</a>|CategoryChannell)>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_GuildChannel.js.html">models/GuildChannel.js</a>, <a href="models_GuildChannel.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="GuildChannel.html#close">GuildChannel#close</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Closes a channel</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(<a href="TextChannel.html">TextChannel</a>|<a href="VoiceChannel.html">VoiceChannel</a>|CategoryChannell)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="createInvite"><span class="type-signature"></span>createInvite<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Invite>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_GuildChannel.js.html">models/GuildChannel.js</a>, <a href="models_GuildChannel.js.html#line92">line 92</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="GuildChannel.html#createInvite">GuildChannel#createInvite</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Creates an invite for the guild channel</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Options for creating the invite</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>maxAge</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>86400</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Duration of invite in seconds, or 0 for never</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxUses</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Maximum uses for the invite, or 0 for unlimited</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>temporary</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether this invite should be temporary</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>unique=</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>If true, don't try to reuse a similar invite</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Invite></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="TextChannel.html">TextChannel</a>|<a href="VoiceChannel.html">VoiceChannel</a>|CategoryChannell)>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_GuildChannel.js.html">models/GuildChannel.js</a>, <a href="models_GuildChannel.js.html#line111">line 111</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="GuildChannel.html#delete">GuildChannel#delete</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Similar to <code>GuildChannel#delete</code>.
+Closes a channel</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(<a href="TextChannel.html">TextChannel</a>|<a href="VoiceChannel.html">VoiceChannel</a>|CategoryChannell)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="edit"><span class="type-signature"></span>edit<span class="signature">(name<span class="signature-attributes">opt</span>, position<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="TextChannel.html">TextChannel</a>|<a href="VoiceChannel.html">VoiceChannel</a>|<a href="CategoryChannel.html">CategoryChannel</a>)>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_GuildChannel.js.html">models/GuildChannel.js</a>, <a href="models_GuildChannel.js.html#line122">line 122</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="GuildChannel.html#edit">GuildChannel#edit</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Edits the channel</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The new name of the channel</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The new position of the channel</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(<a href="TextChannel.html">TextChannel</a>|<a href="VoiceChannel.html">VoiceChannel</a>|<a href="CategoryChannel.html">CategoryChannel</a>)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getInvites"><span class="type-signature"></span>getInvites<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;Invite>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_GuildChannel.js.html">models/GuildChannel.js</a>, <a href="models_GuildChannel.js.html#line140">line 140</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="GuildChannel.html#getInvites">GuildChannel#getInvites</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Returns an array of Channel Invites</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array.&lt;Invite>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 13:13:15 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/jquery-3.1.1.min.js"></script>
+
+<script src="scripts/search.js"></script>
+
+
+<script src="scripts/collapse.js"></script>
+
+
+
+</body>
+</html>
