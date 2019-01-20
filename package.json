@@ -1,0 +1,23 @@
+{
+  "name": "jcord",
+  "version": "0.1.0-rewrite",
+  "description": "JCord is a simple and easy to use Discord Javascript Library that assures users to bring the ease when coding.",
+  "main": "./src/index.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "ws": "^6.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevvyCodes/jcord-rewrite.git"
+  },
+  "author": "Kevlar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KevvyCodes/jcord-rewrite/issues"
+  },
+  "homepage": "https://jcord.js.org/"
+}
