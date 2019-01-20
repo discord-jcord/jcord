@@ -54,6 +54,15 @@ class Store extends Map {
   }
 
   /**
+   * Gets the Store's first item value on the Set
+   * @return {Store<Value>}
+   */
+
+  first() {
+    return super.get(this.keyArray()[0]);
+  }
+
+  /**
    * Returns an array of keys from the Store
    * @returns {Array?}
    */
@@ -64,6 +73,15 @@ class Store extends Map {
     }
 
     return Array.from(this.keys());
+  }
+
+  /**
+   * Gets the Store's last item value on the Set
+   * @return {Store<Value>}
+   */
+
+  last() {
+    return super.get(this.keyArray()[this.keyArray().length - 1]);
   }
 
   /**

@@ -45,6 +45,10 @@ class Shard {
     return this.startTime ? Date.now() - this.startTime : null;
   }
 
+  /**
+   * Connects a shard
+   */
+
   connect() {
     return this.initiate();
   }
@@ -220,7 +224,7 @@ class Shard {
 
           var guild = new Guild(this.client, packet.d);
           this.guilds.set(guild.id, guild);
-
+          
           this.client.guilds.set(guild.id, guild);
 
           this.guildLength--;
@@ -237,20 +241,10 @@ class Shard {
             this.client.shards.set(this.id.toString(), this);
             this.startTime = Date.now();
 
-            /**
-             * Emitted once a shard is ready
-             * @event Client#SHARD_READY
-             * @prop {Object} shard The data of the shard
-             */
             this.client.emit('SHARD_READY', this);
 
             if (this.client.connectedShards.size === this.client.shardCount) {
               this.status = 'ready';
-              
-              /**
-               * Emiited once all shards are ready
-               * @event Client#READY
-               */
               this.client.emit('READY');
             }
           };
@@ -278,11 +272,6 @@ class Shard {
             if (this.client.connectedShards.size === this.client.shardCount) {
               this.client.startTime = Date.now();
               this.status = 'ready';
-              
-              /**
-               * Emiited once all shards are ready
-               * @event Client#READY
-               */
               this.client.emit('READY');
             }
           };  

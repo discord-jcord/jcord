@@ -24,7 +24,6 @@ class TextChannel extends GuildChannel {
     this.rateLimitPerUser = data.rate_limit_per_user;
     this.topic = data.topic || null;
     this.lastMessageID = data.last_message_id || null;
-    this.mention = `<#${this.id}>`;
     this.messages = new Store();
     this.nsfw = data.nsfw;
     this.parentID = data.parent_id || null;
