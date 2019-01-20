@@ -16,11 +16,12 @@ class Channel {
     Object.defineProperty(this, 'client', { value: client });
 
     this.id = data.id;
+    this.mention = `<#${this.id}>`;
     this.type = CHANNEL_TYPES[data.type];
   }
 
   toString() {
-    return `<#${this.id}>`;
+    return this.mention;
   }
 };
 

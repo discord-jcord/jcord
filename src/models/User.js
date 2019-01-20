@@ -20,6 +20,7 @@ class User {
     this.bot = Boolean(data.bot);
     this.discriminator = data.discriminator;
     this.id = data.id;
+    this.mention = `<@${this.id}>`;
     this.tag = `${data.username}#${this.discriminator}`;
     this.username = data.username;
   }
@@ -58,7 +59,7 @@ class User {
   }
 
   toString() {
-    return `<@${this.id}>`;
+    return this.mention;
   }
 };
 

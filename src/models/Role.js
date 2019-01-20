@@ -14,7 +14,7 @@ class Role {
   }
 
   toString() {
-    return `<@&${this.id}>`;
+    return this.mention;
   }
 };
 
