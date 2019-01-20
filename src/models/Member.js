@@ -9,7 +9,7 @@ const Permissions = require('../utils/Permissions');
  * @prop {Number} joinedTimestamp The time the Member joined the guild in ms
  * @prop {Boolean} muter Whether the member is muted
  * @prop {String?} nick The nickname of the member
- * @prop {Object} permission The guild-wide permissions of the member
+ * @prop {Object} permissions The guild-wide permissions of the member
  * @prop {Store} roles The roles of the member
  * @prop {Object} user The user object of the member
  */
