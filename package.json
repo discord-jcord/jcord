@@ -1,6 +1,6 @@
 {
   "name": "jcord",
-  "version": "0.1.1-master",
+  "version": "0.1.0",
   "description": "JCord is a simple and easy to use Discord Javascript Library that assures users to bring the ease when coding.",
   "main": "./src/index.js",
   "dependencies": {
