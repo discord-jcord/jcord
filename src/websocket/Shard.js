@@ -70,7 +70,7 @@ class Shard {
       failed: 0,
       guilds: new Store(),
       latency: Infinity
-  };
+    };
 
     for (var i of Object.entries(data)) {
       this[i[0]] = i[1];
@@ -188,6 +188,7 @@ class Shard {
 
 
       case 'READY':
+        this.sessionID = packet.d.session_id;
         this.client.user = new ClientUser(this.client, packet.d.user);
         if (!packet.d.guilds.length) {
           this.client.connectedShards.set(this.id, this);
