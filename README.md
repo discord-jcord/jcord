@@ -129,5 +129,9 @@ const client = new JCord.CommandCreator({ shardCount: 'auto', defautPrefix: '!' 
 - [x] Logging Features ( Colored ) - Xignotic
 
 ## What's new?
+- The `debug` event now returns an object with two properties. `{ shard: 'SHARD ID', message: 'DEBUG MESSAGE' }`  
+
+- Added an uptime for each shard, so each shard could have an uptime now  
+
 - New Event. We have added a `SHARD_LOADING` event that will be emitted once a shard is being loaded. The data would return an incomplete shard data, `{ id: 'Shard Id' }`  
 - Added 3 new functions for the Client, which includes Xignotic's request for custom logging. They're, `log`, `customLog`, `rgbLog`. You need the `chalk` module in order for these to work.

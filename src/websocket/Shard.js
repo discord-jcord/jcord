@@ -36,8 +36,13 @@ class Shard {
     Object.defineProperty(this, 'guildLength', { value: 0, writable: true });
     Object.defineProperty(this, 'totalMemberCount', { value: 0, writable: true });
     Object.defineProperty(this, 'totalMemberCountOfGuildMemberChunk', { value: 0, writable: true });
+    Object.defineProperty(this, 'startTime', { value: 0, writable: true });
 
     this.setup();
+  }
+
+  get uptime() {
+    return this.startTime ? Date.now() - this.startTime : null;
   }
 
   connect() {
@@ -65,7 +70,7 @@ class Shard {
       failed: 0,
       guilds: new Store(),
       latency: Infinity
-    };
+  };
 
     for (var i of Object.entries(data)) {
       this[i[0]] = i[1];
@@ -186,6 +191,7 @@ class Shard {
         this.client.user = new ClientUser(this.client, packet.d.user);
         if (!packet.d.guilds.length) {
           this.client.connectedShards.set(this.id, this);
+          this.startTime = Date.now();
 
           /**
            * Emitted once a shard is ready
@@ -228,6 +234,7 @@ class Shard {
             this.client.startTime = Date.now();
             this.client.connectedShards.set(this.id, this);
             this.client.shards.set(this.id.toString(), this);
+            this.startTime = Date.now();
 
             /**
              * Emitted once a shard is ready
@@ -263,6 +270,7 @@ class Shard {
 
           if (this.totalMemberCountOfGuildMemberChunk === this.totalMemberCount && this.status !== 'ready') {
             this.client.emit('SHARD_READY', this);
+            this.startTime = Date.now();
             this.client.connectedShards.set(this.id, this);
             this.client.shards.set(this.id.toString(), this);
 
