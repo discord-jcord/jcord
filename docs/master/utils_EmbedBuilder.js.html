@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Member - Documentation</title>
+    <title>utils/EmbedBuilder.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,401 +33,169 @@
 
 <div id="main">
     
-    <h1 class="page-title">Member</h1>
+    <h1 class="page-title">utils/EmbedBuilder.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        Member
-        </h2>
-        
-            <div class="class-description"><p>Represents a Guild Member</p></div>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="Member"><span class="type-signature"></span>new Member<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_Member.js.html">models/Member.js</a>, <a href="models_Member.js.html#line17">line 17</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>deaf</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Whether the member is deaf on a Voice Channel</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>guild</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The guild the member is in</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>joinedTimestamp</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The time the Member joined the guild in ms</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>muter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Whether the member is muted</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>nick</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                    &lt;nullable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The nickname of the member</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>permissions</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The guild-wide permissions of the member</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>roles</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Store.html">Store</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The roles of the member</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>user</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The user object of the member</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
-    
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+/**
+ * Makes creating embeds simplier
+ * @prop {Object} author The author of the embed
+ * @prop {Number} color The color of the embed 
+ * @prop {String} description The description of the embed
+ * @prop {Array} fields An array of embed fields
+ * @prop {Object} footer The footer of the embed
+ * @prop {String} image The image of the embed
+ * @prop {String} timestamp The timestamp of the embed
+ * @prop {String} title The title of the embed
+ * @prop {String} thumbnail The thumbnail of the embed
+ * @prop {String} type The type of the embed
+ */
+
+class EmbedBuilder {
+  constructor(data = {}) {
+    this.type = data.type;
+    this.title = data.title;
+    this.description = data.description;
+    this.color = data.color;
+    this.timestamp = data.timestamp;
+    this.fields = data.fields || [];
+    this.thumbnail = data.thumbnail;
+    this.image = data.image;
+    this.author = data.author;
+    this.footer = data.footer;
+  }
+
+  get hexColor() {
+    return this.color ? `#${this.color.toString(16).padStart(6, '0')}` : null;
+  }
+
+  /**
+   * Makes an embed author
+   * @param {Object} [options] Options for the Author to make for the embed
+   * @param {String} [options.name] The name of the author
+   * @param {String} [options.iconURL] The url of the icon of the author
+   * @param {Stirng} [options.url] The url of the author
+   * @returns {EmbedBuilder}
+   */
+
+  makeAuthor(options = {}) {
+    this.author = { name: options.name, icon_url: options.iconURL, url: options.url };
+    return this;
+  }
+
+  /**
+   * Makes the color of the embed
+   * @param {String|Number} [color] The color of the embed
+   * @returns {EmbedBuilder}
+   */
+
+  makeColor(color) {
+    if (!color) color = 0;
+
+    if (typeof(color) === 'string' &amp;&amp; color.startsWith('#')) {
+      var hex = color.substring(1);
+      var decimal = "0x" + hex;
+
+      color = parseInt(decimal.substring(2), 16)
+    };
+
+    this.color = color;
+    return this;
+  }
+
+  /**
+   * Makes an embed description
+   * @param {String} [description] The description of the embed
+   * @returns {EmbedBuilder}
+   */
+
+  makeDescription(description) {
+    if (description &amp;&amp; description.length > 2048) throw new RangeError('Maximum Embed Description lenght Reached! ( Up to 2048 Only! )')
+
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Makes an embed footer
+   * @param {String} text The footer text
+   * @param {String} iconURL The icon of the footer
+   * @returns {EmbedBuilder}
+   */
+
+  makeFooter(text, iconURL) {
+    if (text.length > 2048) throw new RangeError('Maximum Embed Footer Reached! ( Up to 2048 only! )');
+
+    this.footer = { text, icon_url: iconURL };
+    return this;
+  }
+
+  /**
+   * Make the image of the embed
+   * @param {String} url The url of the image
+   * @returns {EmbedBuilder}
+   */
+
+  makeImage(url) {
+    this.image = { url };
+    return this;
+  }
+
+  /**
+   * Make the thumbnail of the embed
+   * @param {String} url The url of the thumbnail
+   * @returns {EmbedBuilder}
+   */
+
+  makeThumbnail(url) {
+    this.thumbnail = { url };
+    return this;
+  }
+
+  /**
+   * Make the timestamp of the embed
+   * @param {String} timestamp The timestamp of the embed
+   * @returns {EmbedBuilder}
+   */
+
+  makeTimestamp(timestamp = new Date()) {
+    this.timestamp = timestamp;
+    return this;
+  }
+
+  /**
+   * Pushes a field to the embed
+   * @param {Object} [options] Options for the field
+   * @param {String} options.name The name of the field
+   * @param {String} options.value The value of the field
+   * @param {Boolean} [options.inline=false] Whether to inline the embed
+   */
+
+  pushField(options = { inline: false }) {
+    if (this.fields.length === 25) throw new RangeError('Maximum Embed Fields Reached! ( Up to 25 Fields only )');
+    if (!options.name) throw new Error('No Field Name given!');
+    if (options.name &amp;&amp; options.name.length > 256) throw new RangeError('Maximum Embed Field Name length Reached! ( Up to 256 Only! )');
+    if (!options.value) throw new Error('No Field Value given!');
+    if (options.value &amp;&amp; options.value.length > 1024) throw new RangeError('Maximum Embed Field Name length Reached! ( Up to 1024 Only! )');
+
+    options.inline = Boolean(options.inline);
+    this.fields.push(options);
+
+    return this;
+  }
+};
+
+module.exports = EmbedBuilder;</code></pre>
+        </article>
+    </section>
 
 
 
