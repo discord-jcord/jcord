@@ -43,7 +43,6 @@ class Client extends EventEmitter {
 
     if (this.shards < 1 || (typeof this.shards === 'string' && this.shards !== 'auto')) this.emit('error', new Error('Invalid amount of shards! Must be more than one or use \'auto\''));
 
-    this.token = null;
     this.channels = new Store();
     this.guilds = new Store();
     this.shards = new Store();
@@ -51,7 +50,9 @@ class Client extends EventEmitter {
 
     this.rest = new RestHandler(this);
     this.gatewayURL = null;
+
     Object.defineProperty(this, 'connectedShards', { value: new Store() });
+    Object.defineProperty(this, 'token', { value: null, writable: true });
   }
 
   get uptime() {
