@@ -185,7 +185,7 @@ class Shard {
       case 'READY':
         this.client.user = new ClientUser(this.client, packet.d.user);
         if (!packet.d.guilds.length) {
-          this.client.connectedShards.push(this.id);
+          this.client.connectedShards.set(this.id, this);
 
           /**
            * Emitted once a shard is ready
@@ -194,7 +194,7 @@ class Shard {
            */
           this.client.emit('SHARD_READY', this);
 
-          if (this.client.connectedShards.length === this.client.shardCount) {
+          if (this.client.connectedShards.size === this.client.shardCount) {
 
             /**
              * Emiited once all shards are ready
@@ -226,7 +226,8 @@ class Shard {
 
           if (this.guildLength == 0 && this.status !== 'ready' && !this.client.getAllMembers) {
             this.client.startTime = Date.now();
-            this.client.connectedShards.push(this.id);
+            this.client.connectedShards.set(this.id, this);
+            this.client.shards.set(this.id.toString(), this);
 
             /**
              * Emitted once a shard is ready
@@ -235,7 +236,7 @@ class Shard {
              */
             this.client.emit('SHARD_READY', this);
 
-            if (this.client.connectedShards.length === this.client.shardCount) {
+            if (this.client.connectedShards.size === this.client.shardCount) {
               this.status = 'ready';
               
               /**
@@ -262,10 +263,10 @@ class Shard {
 
           if (this.totalMemberCountOfGuildMemberChunk === this.totalMemberCount && this.status !== 'ready') {
             this.client.emit('SHARD_READY', this);
-            this.client.connectedShards.push(this.id);
+            this.client.connectedShards.set(this.id, this);
             this.client.shards.set(this.id.toString(), this);
 
-            if (this.client.connectedShards.length === this.client.shardCount) {
+            if (this.client.connectedShards.size === this.client.shardCount) {
               this.client.startTime = Date.now();
               this.status = 'ready';
               

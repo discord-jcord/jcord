@@ -51,7 +51,7 @@ class Client extends EventEmitter {
 
     this.rest = new RestHandler(this);
     this.gatewayURL = null;
-    Object.defineProperty(this, 'connectedShards', { value: [] });
+    Object.defineProperty(this, 'connectedShards', { value: new Store() });
   }
 
   get uptime() {
