@@ -129,9 +129,6 @@ const client = new JCord.CommandCreator({ shardCount: 'auto', defautPrefix: '!' 
 - [x] Logging Features ( Colored ) - Xignotic
 
 ## What's new?
-- The `debug` event now returns an object with two properties. `{ shard: 'SHARD ID', message: 'DEBUG MESSAGE' }`  
+- Added a new Method for Shards, which is the `Shard#reconnect()`. Which will reconnect the Shard to Discord.  
 
-- Added an uptime for each shard, so each shard could have an uptime now  
-
-- New Event. We have added a `SHARD_LOADING` event that will be emitted once a shard is being loaded. The data would return an incomplete shard data, `{ id: 'Shard Id' }`  
-- Added 3 new functions for the Client, which includes Xignotic's request for custom logging. They're, `log`, `customLog`, `rgbLog`. You need the `chalk` module in order for these to work.
+- New events were added, `SHARD_RECONNECT` is emitted when a Shard is reconnecting and returns `{ id: 'Shard ID' }` and for the other one, which is `SHARD_DISCONNECT`. It is emitted when a Shard is disconnected from Discord and returns `{ id: 'Shard ID', description: 'Description of the disconnect', reason: 'Websocket Reason for the Disconnect' }`

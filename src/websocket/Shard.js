@@ -226,6 +226,7 @@ class Shard {
 
       case 'READY':
         if (this.status === 'reconnecting') {
+          this.startTime = Date.now();
           return this.client.emit('SHARD_READY', (this));
         };
 
