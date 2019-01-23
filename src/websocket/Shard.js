@@ -225,11 +225,6 @@ class Shard {
 
 
       case 'READY':
-        if (this.status === 'reconnecting') {
-          this.startTime = Date.now();
-          return this.client.emit('SHARD_READY', (this));
-        };
-
         this.sessionID = packet.d.session_id;
         this.client.user = new ClientUser(this.client, packet.d.user);
         if (!packet.d.guilds.length) {
@@ -275,6 +270,11 @@ class Shard {
           };
 
           if (this.guildLength == 0 && this.status !== 'ready' && !this.client.getAllMembers) {
+            if (this.status === 'reconnecting') {
+              this.startTime = Date.now();
+              return this.client.emit('SHARD_READY', (this));
+            };
+            
             this.client.startTime = Date.now();
             this.client.connectedShards.set(this.id.toLocaleString(), this);
             this.client.shards.set(this.id.toString(), this);
