@@ -37,6 +37,7 @@ class Shard {
     Object.defineProperty(this, 'totalMemberCount', { value: 0, writable: true });
     Object.defineProperty(this, 'totalMemberCountOfGuildMemberChunk', { value: 0, writable: true });
     Object.defineProperty(this, 'startTime', { value: 0, writable: true });
+    Object.defineProperty(this, 'status', { value: '', writable: true });
 
     this.setup();
   }
@@ -46,11 +47,36 @@ class Shard {
   }
 
   /**
+   * Reconnects the shard
+   */
+
+  reconnect() {
+    this.client.emit('SHARD_RECONNECT', ({ id: this.id }));
+
+    if (this.status !== 'closed') {
+      this.ws.close(1000);
+    };
+
+    setTimeout(() => {
+      this.status = 'reconnecting';
+      this.connect(true);
+    }, 5000);
+
+    return true;
+  }
+
+  /**
    * Connects a shard
    */
 
-  connect() {
-    return this.initiate();
+  connect(reconnected) {
+    if (reconnected) {
+      this.initiate();
+      return true;
+    } else {
+      this.initiate();
+      return false;
+    }
   }
 
   initiate() {
@@ -61,6 +87,13 @@ class Shard {
 
       this.onMessage(packet);
     });
+
+    this.ws.onclose = (event) => {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = null;
+      this.status = 'closed';
+      this.client.emit('SHARD_DISCONNECT', ({ id: this.id, description: `Shard Disconnected with Close Code: ${event.code}`, reason: event.reason || 'No reason given' }));
+    };
 
     return;
   }
@@ -192,6 +225,10 @@ class Shard {
 
 
       case 'READY':
+        if (this.status === 'reconnecting') {
+          return this.client.emit('SHARD_READY', (this));
+        };
+
         this.sessionID = packet.d.session_id;
         this.client.user = new ClientUser(this.client, packet.d.user);
         if (!packet.d.guilds.length) {
@@ -440,7 +477,7 @@ class Shard {
       }
     });
 
-    setInterval(() => {
+    this.heartbeatInterval = setInterval(() => {
       this.lastHeartbeatSent = new Date().getTime();
       this.client.emit('debug', { shard: this.id, message: 'Sent another heartbeat!' });
       this.send({ op: 1, d: this.seq })
