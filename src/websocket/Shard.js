@@ -195,7 +195,8 @@ class Shard {
         this.sessionID = packet.d.session_id;
         this.client.user = new ClientUser(this.client, packet.d.user);
         if (!packet.d.guilds.length) {
-          this.client.connectedShards.set(this.id, this);
+          this.client.connectedShards.set(this.id.toLocaleString(), this);
+          this.client.shards.set(this.id.toString(), this);
           this.startTime = Date.now();
 
           /**
@@ -237,7 +238,7 @@ class Shard {
 
           if (this.guildLength == 0 && this.status !== 'ready' && !this.client.getAllMembers) {
             this.client.startTime = Date.now();
-            this.client.connectedShards.set(this.id, this);
+            this.client.connectedShards.set(this.id.toLocaleString(), this);
             this.client.shards.set(this.id.toString(), this);
             this.startTime = Date.now();
 
@@ -266,7 +267,7 @@ class Shard {
           if (this.totalMemberCountOfGuildMemberChunk === this.totalMemberCount && this.status !== 'ready') {
             this.client.emit('SHARD_READY', this);
             this.startTime = Date.now();
-            this.client.connectedShards.set(this.id, this);
+            this.client.connectedShards.set(this.id.toLocaleString(), this);
             this.client.shards.set(this.id.toString(), this);
 
             if (this.client.connectedShards.size === this.client.shardCount) {

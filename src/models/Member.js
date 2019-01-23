@@ -40,7 +40,7 @@ class Member {
   }
 
   get permissions() {
-    return new Permissions(this.guild.owner.user.id === this.user.id ? 8 : this.roles.valueArray().reduce((acc, val) => acc | val.permissions, 0));
+    return new Permissions(this.guild.owner.user.id === this.user.id ? 8 : this.roles.valueArray().reduce((acc, val) => acc | val.permissions, 0), this.guild);
   }
 };
 

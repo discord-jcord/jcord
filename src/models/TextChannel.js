@@ -25,7 +25,6 @@ class TextChannel extends GuildChannel {
     this.topic = data.topic || null;
     this.lastMessageID = data.last_message_id || null;
     this.messages = new Store();
-    this.nsfw = data.nsfw;
     this.parentID = data.parent_id || null;
   }
 
