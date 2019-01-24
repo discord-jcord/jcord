@@ -90,6 +90,7 @@ class Shard {
 
     this.ws.onclose = (event) => {
       clearInterval(this.heartbeatInterval);
+      if (this.client.connectedShards.has(this.id.toString())) this.client.connectedShards.delete(this.id.toString());
       this.heartbeatInterval = null;
       this.status = 'closed';
       this.client.emit('SHARD_DISCONNECT', ({ id: this.id, description: `Shard Disconnected with Close Code: ${event.code}`, reason: event.reason || 'No reason given' }));
@@ -356,8 +357,13 @@ class Shard {
 
         case 'GUILD_MEMBER_UPDATE':
           var guild = this.client.guilds.get(packet.d.guild_id);
+
+          if (!guild.members.has(packet.d.user.id)) {
+            guild.members.set(packet.d.user.id, new Member(this.client, packet.d));
+          };
+
           var member = guild.members.get(packet.d.user.id);
-    
+
           if (!packet.d.roles.includes(guild.id)) packet.d.roles.push(guild.id);
     
           if (packet.d.roles.length > member.roles.size) {
