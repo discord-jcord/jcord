@@ -1,6 +1,10 @@
 # Jcord 
 Jcord is an easy to use Discord API Library, Maintained by [KevvyCodes](https://github.com/KevvyCodes/)
 
+## Documentation
+- [Stable](https://jcord.js.org/)  
+- [Master](https://jcord.js.org/master)
+
 ## How-to
 - [Installation](https://github.com/discord-jcord/jcord/blob/master/README.md#installation)  
 - [Examples](https://github.com/discord-jcord/jcord/blob/master/README.md#examples)
@@ -9,8 +13,8 @@ Jcord is an easy to use Discord API Library, Maintained by [KevvyCodes](https://
 Jcord can be used on **any** operating system that uses NodeJS.  
 Installing Jcord is pretty easy, and there are two Major versions you can install.  
 
-[Master]()
-[Stable]()
+[Master](https://github.com/discord-jcord/jcord/blob/master/README.md#master)  
+[Stable](https://github.com/discord-jcord/jcord/blob/master/README.md#stable)
 
 ### Master
 **Warning**: Install Jcord's Master Version can be very buggy, but the benefit from this is it's being updated frequently. We only update the stable version for minor bug fixes and once a version of Master is done.  
