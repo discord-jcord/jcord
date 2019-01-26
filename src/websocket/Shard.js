@@ -278,6 +278,8 @@ class Shard {
           if (this.guildLength == 0 && this.status !== 'ready' && !this.client.getAllMembers) {
             if (this.status === 'reconnecting') {
               this.startTime = Date.now();
+              this.status = 'connected';
+              this.client.connectedShards.set(this.id.toLocaleString(), this);
               return this.client.emit('SHARD_READY', (this));
             };
             
