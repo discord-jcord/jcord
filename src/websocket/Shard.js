@@ -369,30 +369,37 @@ class Shard {
             guild.members.set(packet.d.user.id, new Member(this.client, packet.d));
           };
 
-          var member = guild.members.get(packet.d.user.id);
+          var oldMember = guild.members.get(packet.d.user.id);
+          var newMember = guild.members.set(packet.d.user.id, new Member(this.client, packet.d));
+
+          if (packet.d.nick !== oldMember.nick) {
+            newMember.nick = packet.d.nick;
+            newMember = guild.members.set(packet.d.user.id, new Member(this.client, packet.d));
+          };
 
           if (!packet.d.roles.includes(guild.id)) packet.d.roles.push(guild.id);
     
-          if (packet.d.roles.length > member.roles.size) {
-            var role = member.guild.roles.get(packet.d.roles[packet.d.roles.length - 2]);
+          if (packet.d.roles.length > newMember.roles.size) {
+            var role = newMember.guild.roles.get(packet.d.roles[packet.d.roles.length - 2]);
     
-            member.roles.set(role.id, role);
+            newMember.roles.set(role.id, role);
           };
 
-          if (packet.d.roles.length < member.roles.size) {
-            var oldRoleIDs = member.roles.keyArray();
+          if (packet.d.roles.length < newMember.roles.size) {
+            var oldRoleIDs = newMember.roles.keyArray();
             var removedRoles = oldRoleIDs.filter(val => !packet.d.roles.includes(val));
     
             removedRoles.forEach(role => {
-              member.roles.delete(role);
+              newMember.roles.delete(role);
             });
           };
           /**
            * Emitted when a guild gets updated
            * @event Client#GUILD_MEMBER_UPDATE
-           * @prop {Member} member The member that got updated
+           * @prop {Member} oldMember The old data of the member that got updated
+           * @prop {Member} newMember The new data of the member that got updated
            */
-          this.client.emit('GUILD_MEMBER_UPDATE', member);
+          this.client.emit('GUILD_MEMBER_UPDATE', oldMember, newMember);
           break;
 
         case 'PRESENCE_UPDATE':
