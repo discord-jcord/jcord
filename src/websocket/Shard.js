@@ -25,7 +25,6 @@ try {
  * @prop {Number} latency The latency of the shard
  * @prop {Number|String} id The id of the shard, it will only be a string if it's in the Client#shards
  * @prop {Store} guilds A store of Guilds connected to the Shard
- * @prop {Number} uptime The uptime of the Shard in ms
  */
 
 class Shard {
@@ -47,57 +46,35 @@ class Shard {
     return this.startTime ? Date.now() - this.startTime : null;
   }
 
-  /**
-   * Resumes the gateway connection
-   */
-
-  reconnect() {
-    this.client.emit('debug', { shard: this.id, message: 'Received Opcode 7 ( Reconnect ). Will reconnect the shard...' });
-    this.disconnect(true);
-
-    this.ws = null;
-    this.ws = new Websocket(this.client.gatewayURL);
-
-    this.send({
-      op: 2,
-      d: {
-        token: this.client.token,
-        properties: {
-          $os: process.platform,
-          $browser: 'JCord',
-          $device: 'JCord'
-        },
-        shard: [this.id, this.client.shardCount]
-      }
-    });
+  disconnect(code = 1000) {
+    this.ws.close(code);
+    return true;
   }
 
   /**
    * Reconnects the shard
    */
 
-  disconnect(reconnect = false) {
+  reconnect() {
     this.client.emit('SHARD_RECONNECT', ({ id: this.id }));
 
     if (this.status !== 'closed') {
-      this.ws.close(1000);
+      this.disconnect();
     };
 
-    if (reconnect) {
-      setTimeout(() => {
-        this.status = 'reconnecting';
-        this.connect(true);
-      }, 5000);
-    };
+    setTimeout(() => {
+      this.status = 'reconnecting';
+      this.connect(true);
+    }, 5000);
 
-    return reconnect;
+    return true;
   }
 
   /**
    * Connects a shard
    */
 
-  connect(reconnected = false) {
+  connect(reconnected) {
     if (reconnected) {
       this.initiate();
       return true;
@@ -118,9 +95,7 @@ class Shard {
 
     this.ws.onclose = (event) => {
       clearInterval(this.heartbeatInterval);
-
       if (this.client.connectedShards.has(this.id.toString())) this.client.connectedShards.delete(this.id.toString());
-      
       this.heartbeatInterval = null;
       this.status = 'closed';
       this.client.emit('SHARD_DISCONNECT', ({ id: this.id, description: `Shard Disconnected with Close Code: ${event.code}`, reason: event.reason || 'No reason given' }));
@@ -187,7 +162,24 @@ class Shard {
         break;
 
         case 7:
-          this.reconnect();
+          this.client.emit('debug', { shard: this.id, message: 'Received Opcode 7 ( Reconnect ). Will reconnect the shard...' });
+          this.disconnect(4000);
+
+          this.ws = null;
+          this.ws = new Websocket(this.client.gatewayURL);
+
+          this.send({
+            op: 2,
+            d: {
+              token: this.client.token,
+              properties: {
+                $os: process.platform,
+                $browser: 'JCord',
+                $device: 'JCord'
+              },
+              shard: [this.id, this.client.shardCount]
+            }
+          });
           break;
     };
   }
