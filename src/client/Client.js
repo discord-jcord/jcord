@@ -47,6 +47,7 @@ class Client extends EventEmitter {
     this.guilds = new Store();
     this.shards = new Store();
     this.users = new Store();
+    this.user = null;
 
     this.rest = new RestHandler(this);
     this.gatewayURL = null;
@@ -157,6 +158,8 @@ class Client extends EventEmitter {
    */
 
   createMessage(channel, content) {
+    if (content && content.length > 2000) return this.emit('error', new Error('Message length must be equal to or less than 2000 Characters!'));
+
     return this.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel), {
       data: {
         content
@@ -165,17 +168,15 @@ class Client extends EventEmitter {
       return new Message(this, res.data);
     });
   }
-
+  
   /**
-   * This will start connecting to the gateway using the given bot token
-   * @deprecated
-   * @param {String} token The token of the user
-   * @returns {Void}
+   * Spawns a shard
+   * @param {Number} id The id of the shard
+   * @returns {Boolean}
    */
 
-  start(token) {
-    console.warn(`Client#start() has been deprecated! Please use Client#initiate() instead.`);
-    return this.initiate(token);
+  spawn(id) {
+    return new Shard(this, id).connect();
   }
 
   /**
@@ -197,9 +198,11 @@ class Client extends EventEmitter {
       this.shardCount = res.data.shards;
     };
 
+    this.emit('debug', { shard: 'Global', message: `Connecting to Discord... Shards: ${this.shardCount}` });
+
     for (let i = 0; i < this.shardCount; i++) {
       setTimeout(() => {
-        new Shard(this, i).connect();
+        this.spawn(i);
       }, i * 6500);
     };
   }
