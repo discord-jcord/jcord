@@ -80,7 +80,7 @@ client.on('MESSAGE_CREATE', (msg) => {
   };
 });
 
-client.login(client.token);
+client.initiate(client.token);
 ```
 
 ### Command Creator Usage
@@ -119,5 +119,5 @@ client.on('READY', () => console.log(`Ready! All shards connected. Logged in as 
 // We can Register a Command to the cache using CommandCreator#registerCommand
 client.registerCommand('ping', 'pong!');
 
-client.login(client.token);
+client.initiate(client.token);
 ```
