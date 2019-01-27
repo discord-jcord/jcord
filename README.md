@@ -13,8 +13,8 @@ Jcord is an easy to use Discord API Library, Maintained by [KevvyCodes](https://
 Jcord can be used on **any** operating system that uses NodeJS.  
 Installing Jcord is pretty easy, and there are two Major versions you can install.  
 
-[Master](https://github.com/discord-jcord/jcord/blob/master/README.md#master)  
-[Stable](https://github.com/discord-jcord/jcord/blob/master/README.md#stable)
+- [Master](https://github.com/discord-jcord/jcord/blob/master/README.md#master)  
+- [Stable](https://github.com/discord-jcord/jcord/blob/master/README.md#stable)
 
 ### Master
 **Warning**: Install Jcord's Master Version can be very buggy, but the benefit from this is it's being updated frequently. We only update the stable version for minor bug fixes and once a version of Master is done.  
@@ -34,7 +34,7 @@ If you want to build a flexible bot, i suggest you use the Classic Jcord, while 
 const Jcord = require('jcord');
 
 // Extend the Jcord#Client class to add properties the right way
-class MyBot extends Jcord.client {
+class MyBot extends Jcord.Client {
   constructor(options) {
     super(options);
     this.token = 'Your bot\'s token';
