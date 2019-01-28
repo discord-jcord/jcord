@@ -1,7 +1,7 @@
 "use strict";
 
 const EventEmitter = require('events').EventEmitter;
-const Shard = require('../websocket/Shard');
+const Shard = require('../gateway/Shard');
 const Store = require('../utils/Store');
 const RestHandler = require('../rest/RestHandler');
 const User = require('../models/User');
@@ -12,14 +12,19 @@ const Message = require('../models/Message');
 /**
  * @extends EventEmitter Represents a Discord Client
  * @prop {Store} channels Where channels are being cached
+ * @prop {Store} connectedShards A store of **connected** shards
  * @prop {Store} guilds Where guilds are being cached
  * @prop {String} token The token of the client
  * @prop {Store} users Where users are being cached
+ * @prop {Stoore} shards A store of Shards
  * @prop {Object} [options] Options for the Discord Client
  * @prop {Number|String} [options.shardCount=1] The amount of shards to use
  * @prop {Boolean} [options.disableEveryone=true] Whether to disable the @everyone ping
  * @prop {Boolean} [options.getAllMembers=false] Whether to fetch all members on each guild regardless of being offline or not
  * @prop {Boolean} [options.storeMessages=false] Whether to store messages in a cache, once the bot restarts the messages in the cache will be gone and can't be re-added automatically
+ * @prop {Number} [options.loginDelay=6500] The amount of time in ms to add a delay when connecting shards
+ * @prop {Boolean} [options.logger=false] Whether to use our custom logging
+ * @prop {Number} [options.largeThreshold=250] The amount of members needed to consider a guild large
  */
 
 class Client extends EventEmitter {
@@ -29,9 +34,12 @@ class Client extends EventEmitter {
     this.firstShardSent = false;
     this.getAllMembers = options.getAllMembers || false;
     this.storeMessages = options.storeMessages || false;
+    this.loginDelay = options.loginDelay || 6500;
     this.logger = options.logger || false;
     this.largeThreshold = options.largeThreshold || 250;
+    this.disableEveryone = options.disableEveryone || true;
     this.chalk = null;
+    this.status = null;
 
     if (this.logger) {
       try {
@@ -160,6 +168,10 @@ class Client extends EventEmitter {
   createMessage(channel, content) {
     if (content && content.length > 2000) return this.emit('error', new Error('Message length must be equal to or less than 2000 Characters!'));
 
+    if (this.disableEveryone) {
+      content = content.replace(/@everyone/g, '@\u200beveryone');
+    };
+
     return this.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel), {
       data: {
         content
@@ -203,7 +215,7 @@ class Client extends EventEmitter {
     for (let i = 0; i < this.shardCount; i++) {
       setTimeout(() => {
         this.spawn(i);
-      }, i * 6500);
+      }, i * this.loginDelay);
     };
   }
 

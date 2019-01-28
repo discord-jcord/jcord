@@ -28,7 +28,7 @@ class Role {
 
   get hexColor() {
     if (this.color === 0) {
-      return '0';
+      return '#000000';
     }
 
     let color = this.color.toString(16);

@@ -3,6 +3,10 @@ const { HTTP } = require('../utils/Constants');
 const DiscordAPIError = require('./DiscordAPIError');
 const DiscordRESTError = require('./DiscordRESTError');
 
+/**
+ * Represents the Handler for our Rest Requests
+ */
+
 class RequestHandler {
   constructor(client) {
     this.client = client;

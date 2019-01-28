@@ -1,6 +1,15 @@
 const Client = require('../client/Client');
 const Store = require('../utils/Store');
 
+/**
+ * @extends Client Represents the Command Creator feature
+ * @prop {Store} _commands A store of Commands ( Where registered commands are added )
+ * @prop {Object} [options] Options for the command creator
+ * @prop {Boolean} [options.customPrefix=false] Whether to use a by-guild custom prefix
+ * @prop {String} [options.defaultPrefix='!'] The default Prefix of the bot
+ * @prop {Array} [options.owners=[]] An array of bot owner ids
+ */
+
 class CommandCreator extends Client {
   constructor(options = {}) {
     super(options);
@@ -16,15 +25,13 @@ class CommandCreator extends Client {
     if (this.customPrefix) {
       try {
         require('depo');
-        depo = true;
-        this.db = new (require('depo')).Database({ name: 'jcord' });
+        depo = (this.db = new (require('depo')).Database({ name: 'jcord' }));
       } catch(error) {
         depo = null;
         this.emit('error', new Error(`
 If you would want to get the current guild prefix,
 please install "depo"
-Note: Please install the master version by doing:
-"npm install boltxyz/depo"`));
+`));
       }
     }
     

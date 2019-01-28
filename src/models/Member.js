@@ -21,7 +21,7 @@ class Member {
     });
 
     this.deaf = Boolean(data.deaf);
-    this.guild = data.guild ? data.guild : this.client.guilds.has(data.guild_id) ? this.client.guilds.get(data.guild_id) : this.client.emit('MEMBER found but no Guild!');
+    this.guild = data.guild ? data.guild : this.client.guilds.has(data.guild_id) ? this.client.guilds.get(data.guild_id) : this.client.emit('error', new Error('MEMBER found but no Guild!'));
     this.joinedTimestamp = new Date(data.joined_at).getTime();
     this.muted = Boolean(data.mute);
     this.nick = data.nick || null;

@@ -63,7 +63,6 @@ class Guild extends UnavailableGuild {
     this.presences = data.presences;
     this.region = data.region;
     this.roles = new Store();
-    this.shard = data.shard || this.client.shards.filter(shard => shard.guilds.has(msg.channel.guild.id))[0];
     this.splash = data.splash;
     this.systemChannelID = data.system_channel_id;
     this.verificationLevel = data.verification_level;
@@ -124,6 +123,10 @@ class Guild extends UnavailableGuild {
 
   get owner() {
     return this.ownerID ? this.members.get(this.ownerID) : null;
+  }
+
+  get shard() {
+    return this.client.connectedShards.filter(shard => shard.guilds.has(this.id))[0];
   }
 
   get systemChannel() {

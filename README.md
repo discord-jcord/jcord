@@ -121,3 +121,24 @@ client.registerCommand('ping', 'pong!');
 
 client.initiate(client.token);
 ```
+
+## Approved Suggestions
+- MoordMachineYT#1910: Just helped me on some stuff, giving credit  
+
+- [x] Whomity ( Discord: Whomity#0001 ) | Suggested the Command Creator and the Args Handler  
+
+- [x] Xignotix ( Discord: Xignotic#0001 ) | Suggested Custom Logging Design  
+
+*Want your own Feature added? Join our [Discord Chat](https://discord.gg/JK8xDJQ) And suggest today!*
+
+## To-do List
+- [x] Internal Sharding  
+- [ ] Disconnection Handling  
+- [x] Make code readable  
+- [x] Seperate events in multiple files  
+- [ ] Update `Client#PRESENCE_UPDATE`  
+- [ ] Rate limit handler  
+- [ ] Voice Support ***soon*** 
+
+## Supporters
+Thanks to the people of [Plexi Development](https://discord.gg/plexidev) and [Tabby Deveopment](https://discord.gg/XyaDTyB) for supporting this Project! Make sure to join their servers.
