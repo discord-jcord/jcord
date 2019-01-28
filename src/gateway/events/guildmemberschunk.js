@@ -36,6 +36,7 @@ class GuildMembersChunk {
       shard.client.emit('SHARD_READY', shard);
 
       if (shard.client.connectedShards.size === shard.client.shardCount) {
+        shard.client.startTime = Date.now();
         shard.client.status = 'ready';
         shard.client.emit('READY');
       };
