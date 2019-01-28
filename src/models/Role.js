@@ -27,14 +27,7 @@ class Role {
   }
 
   get hexColor() {
-    if (this.color === 0) {
-      return '#000000';
-    }
-
-    let color = this.color.toString(16);
-
-    while (color < 6) color = `0${color}`;
-    return `#${color}`
+    return `#${this.color.padStart(6, '0')}`;
   }
 
   toString() {
