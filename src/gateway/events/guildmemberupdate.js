@@ -4,7 +4,7 @@ const Store = require('../../utils/Store');
 
 /**
  * Emits once a user joins a guild
- * @event Client.GuildMemberUpdate
+ * @event Client.GUILD_MEMBER_UPDATE
  * @prop {Member} member The new member data ( Cached )
  * @prop {Member} oldMember The old member data ( Partial, not cached )
  * @prop {String?} oldMember.nick The old nickname of the member

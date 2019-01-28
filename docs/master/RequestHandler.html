@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>models/ClientUser.js - Documentation</title>
+    <title>RequestHandler - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,47 +33,365 @@
 
 <div id="main">
     
-    <h1 class="page-title">models/ClientUser.js</h1>
+    <h1 class="page-title">RequestHandler</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>const User = require('./User');
+        <h2>
+        RequestHandler
+        </h2>
+        
+            <div class="class-description"><p>Represents the Handler for our Rest Requests</p></div>
+        
+    
+</header>
 
-/**
- * @extends User
- * @prop {String} avatar The avatar hash of the user
- * @prop {String} avatarURL The url of the user's avatar
- * @prop {Boolean} bot Whether the user is a bot or not
- * @prop {String} discriminator The discriminator of the user
- * @prop {String?} email The email of the client
- * @prop {Snowflake} id The id of the user
- * @prop {Boolean} mfaEnabled Whether the client has mfa enabled
- * @prop {String} tag The tag of the user
- * @prop {String} username The username of the user
- * @prop {Boolean} verified Whether the client is verified
- */
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-class ClientUser extends User {
-  constructor(client, data) {
-    super(client, data);
-    Object.defineProperty(this, 'client', { value: client });
+    
+    <h2>Constructor</h2>
+    
 
-    this.email = data.email || null;
-    this.locale = data.locale || null;
-    this.mfaEnabled = data.mfa_enabled;
-    this.verified = data.verified;
-  }
-};
+    <h4 class="name" id="RequestHandler"><span class="type-signature"></span>new RequestHandler<span class="signature">()</span><span class="type-signature"></span></h4>
 
-module.exports = ClientUser;</code></pre>
-        </article>
-    </section>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_RestHandler.js.html">rest/RestHandler.js</a>, <a href="rest_RestHandler.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="request"><span class="type-signature">(async) </span>request<span class="signature">(method, url, data<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object.&lt;Data>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_RestHandler.js.html">rest/RestHandler.js</a>, <a href="rest_RestHandler.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Makes a rest request</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The method of the rest request</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The url to do a request</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The data for the request</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object.&lt;Data></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

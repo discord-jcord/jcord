@@ -3,12 +3,6 @@
 // models
 const Guild = require('../../models/Guild');
 
-/**
- * Emitted once a guild becomes available or when a bot joins a guild
- * @event Client.GUILD_CREATE
- * @prop {Guild} guild The guild that became available
- */
-
 class GuildCreate {
   constructor() {}
 
@@ -48,6 +42,12 @@ class GuildCreate {
       shard.client.shards.set(shard.id, shard);
       shard.status = 'ready';
 
+      /**
+       * Emitted once a Shard becomes ready
+       * @event Client.SHARD_READY
+       * @prop {Shard} shard The data of the shard
+       */
+
       shard.client.emit('SHARD_READY', shard);
 
       if (shard.client.connectedShards.size === shard.client.shardCount) {
@@ -55,6 +55,14 @@ class GuildCreate {
         shard.client.emit('READY');
       }
     };
+
+    /**
+     * Emitted once a guild becomes available or when a bot joins a guild
+     * @event Client.GUILD_CREATE
+     * @prop {Guild} guild The guild that became available
+     */
+
+    shard.client.emit('GUILD_CREATE', guild);
   }
 };
 

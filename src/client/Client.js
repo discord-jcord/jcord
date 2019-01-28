@@ -16,7 +16,8 @@ const Message = require('../models/Message');
  * @prop {Store} guilds Where guilds are being cached
  * @prop {String} token The token of the client
  * @prop {Store} users Where users are being cached
- * @prop {Stoore} shards A store of Shards
+ * @prop {Store} shards A store of Shards
+ * @prop {Number} shardCount The amount of shards to connect to Discord. ( useful for by shard status )
  * @prop {Object} [options] Options for the Discord Client
  * @prop {Number|String} [options.shardCount=1] The amount of shards to use
  * @prop {Boolean} [options.disableEveryone=true] Whether to disable the @everyone ping
@@ -60,8 +61,16 @@ class Client extends EventEmitter {
     this.rest = new RestHandler(this);
     this.gatewayURL = null;
 
+    let client_activity = {
+      game: null,
+      since: null,
+      status: 'online',
+      afk: false
+    };
+
     Object.defineProperty(this, 'connectedShards', { value: new Store() });
     Object.defineProperty(this, 'token', { value: null, writable: true });
+    Object.defineProperty(this, 'presence', { value: client_activity, writable: true });
   }
 
   get uptime() {
@@ -122,10 +131,6 @@ class Client extends EventEmitter {
         return resolve(this.users.get(user));
       });
     };
-    return this.rest.request("GET", ENDPOINTS.USER(user))
-    .then(res => {
-      return this.users.set(res.data.id, new User(this, res.data));
-    });
   }
 
   /**
@@ -213,6 +218,7 @@ class Client extends EventEmitter {
     this.emit('debug', { shard: 'Global', message: `Connecting to Discord... Shards: ${this.shardCount}` });
 
     for (let i = 0; i < this.shardCount; i++) {
+      this.shards.set(i.toString(), null);
       setTimeout(() => {
         this.spawn(i);
       }, i * this.loginDelay);
@@ -292,6 +298,35 @@ class Client extends EventEmitter {
     if (!this.logger) return this.emit('error', new Error('You need to install the "chalk" package!'));
 
     console.log(`[${this.chalk.rgb(options.red, options.green, options.blue)(type)}]: ${message}`);
+
+    return options;
+  }
+
+  /**
+   * Sends an activity to the shard
+   * @param {String} shard The id of the shard, or `'all'` for all shards
+   * @param {Object} [options] The options for the Activity
+   * @param {Number} [options.since=null] Unix time (in milliseconds) of when the client went idle, or null if the client is not idle
+   * @param {Object} [options.game=null] The user's new activity
+   * @param {String} [options.game.name=null] The activity's name
+   * @param {Number} [options.game.type=0] The [activity's type](https://discordapp.com/developers/docs/topics/gateway#activity-object-activity-types)
+   * @param {String} [options.game.url=null] The url of the activity ( Only for game type 1 )
+   * @param {String} [options.status='online'] The new status of the client
+   * @param {Boolean} [options.afk=false] Whether or not the client is afk
+   * @returns {Object} The options for the Activity
+   */
+
+  setActivity(shard, options = {}) {
+    if (!shard || (shard && (shard !== 'all' || shard !== 'all' && !this.connectedShards.has(shard))))
+      return this.emit('error', new Error('Invalid Shard!'));
+    shard = typeof shard === 'number' ? shard.toString() : shard;
+
+    if (shard === 'all') {
+      for (var i = 0; i < this.connectedShards.size; i++)
+        this.connectedShards.get(i.toString()).setActivity(options);
+    } else {
+      this.connectedShards.get(shard).setActivity(options);
+    }
 
     return options;
   }

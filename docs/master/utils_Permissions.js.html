@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>models/ClientUser.js - Documentation</title>
+    <title>utils/Permissions.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">models/ClientUser.js</h1>
+    <h1 class="page-title">utils/Permissions.js</h1>
     
 
     
@@ -43,35 +43,151 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const User = require('./User');
+            <pre class="prettyprint source linenums"><code>const Store = require("./Store");
 
-/**
- * @extends User
- * @prop {String} avatar The avatar hash of the user
- * @prop {String} avatarURL The url of the user's avatar
- * @prop {Boolean} bot Whether the user is a bot or not
- * @prop {String} discriminator The discriminator of the user
- * @prop {String?} email The email of the client
- * @prop {Snowflake} id The id of the user
- * @prop {Boolean} mfaEnabled Whether the client has mfa enabled
- * @prop {String} tag The tag of the user
- * @prop {String} username The username of the user
- * @prop {Boolean} verified Whether the client is verified
- */
+class Permission {
+  constructor(num, guild) {
+    this.col = new Store();
+    this.guild = guild;
 
-class ClientUser extends User {
-  constructor(client, data) {
-    super(client, data);
-    Object.defineProperty(this, 'client', { value: client });
+    if ((num &amp; 8) === 8) {
+      num = 0b1111111111101111111110011111111;
+    }
+    if (num &amp; (1 &lt;&lt; 30)) {
+      this.col.set("manageEmojis", true);
+      num -= (1 &lt;&lt; 30);
+    }
+    if (num &amp; (1 &lt;&lt; 29)) {
+      this.col.set("manageWebhooks", true);
+      num -= (1 &lt;&lt; 29);
+    }
+    if (num &amp; (1 &lt;&lt; 28)) {
+      this.col.set("manageRoles", true);
+      num -= (1 &lt;&lt; 28);
+    }
+    if (num &amp; (1 &lt;&lt; 27)) {
+      this.col.set("manageNicknames", true);
+      num -= (1 &lt;&lt; 27);
+    }
+    if (num &amp; (1 &lt;&lt; 26)) {
+      this.col.set("changeNickname", true);
+      num -= (1 &lt;&lt; 26);
+    }
+    if (num &amp; (1 &lt;&lt; 25)) {
+      this.col.set("voiceUseVAD", true);
+      num -= (1 &lt;&lt; 25);
+    }
+    if (num &amp; (1 &lt;&lt; 24)) {
+      this.col.set("voiceMoveMembers", true);
+      num -= (1 &lt;&lt; 24);
+    }
+    if (num &amp; (1 &lt;&lt; 23)) {
+      this.col.set("voiceDeafenMembers", true);
+      num -= (1 &lt;&lt; 23);
+    }
+    if (num &amp; (1 &lt;&lt; 22)) {
+      this.col.set("voiceMuteMembers", true);
+      num -= (1 &lt;&lt; 22);
+    }
+    if (num &amp; (1 &lt;&lt; 21)) {
+      this.col.set("voiceSpeak", true);
+      num -= (1 &lt;&lt; 21);
+    }
+    if (num &amp; (1 &lt;&lt; 20)) {
+      this.col.set("voiceConnect", true);
+      num -= (1 &lt;&lt; 20);
+    }
+    if (num &amp; (1 &lt;&lt; 18)) {
+      this.col.set("externalEmojis", true);
+      num -= (1 &lt;&lt; 18);
+    }
+    if (num &amp; (1 &lt;&lt; 17)) {
+      this.col.set("mentionEveryone", true);
+      num -= (1 &lt;&lt; 17);
+    }
+    if (num &amp; (1 &lt;&lt; 16)) {
+      this.col.set("readMessageHistory", true);
+      num -= (1 &lt;&lt; 16);
+    }
+    if (num &amp; (1 &lt;&lt; 15)) {
+      this.col.set("attachFiles", true);
+      num -= (1 &lt;&lt; 15);
+    }
+    if (num &amp; (1 &lt;&lt; 14)) {
+      this.col.set("embedLinks", true);
+      num -= (1 &lt;&lt; 14);
+    }
+    if (num &amp; (1 &lt;&lt; 13)) {
+      this.col.set("manageMessages", true);
+      num -= (1 &lt;&lt; 13);
+    }
+    if (num &amp; (1 &lt;&lt; 12)) {
+      this.col.set("sendTTSMessages", true);
+      num -= (1 &lt;&lt; 12);
+    }
+    if (num &amp; (1 &lt;&lt; 11)) {
+      this.col.set("sendMessages", true);
+      num -= (1 &lt;&lt; 11);
+    }
+    if (num &amp; (1 &lt;&lt; 10)) {
+      this.col.set("readMessages", true);
+      num -= (1 &lt;&lt; 10);
+    }
+    if (num &amp; (1 &lt;&lt; 7)) {
+      this.col.set("viewAuditLogs", true);
+      num -= (1 &lt;&lt; 7);
+    }
+    if (num &amp; (1 &lt;&lt; 6)) {
+      this.col.set("addReactions", true);
+      num -= (1 &lt;&lt; 6);
+    }
+    if (num &amp; (1 &lt;&lt; 5)) {
+      this.col.set("manageGuild", true);
+      num -= (1 &lt;&lt; 5);
+    }
+    if (num &amp; (1 &lt;&lt; 4)) {
+      this.col.set("manageChannels", true);
+      num -= (1 &lt;&lt; 4);
+    }
+    if (num &amp; (1 &lt;&lt; 3)) {
+      this.col.set("administrator", true);
+      num -= (1 &lt;&lt; 3);
+    }
+    if (num &amp; (1 &lt;&lt; 2)) {
+      this.col.set("banMembers", true);
+      num -= (1 &lt;&lt; 2);
+    }
+    if (num &amp; (1 &lt;&lt; 1)) {
+      this.col.set("kickMembers", true);
+      num -= (1 &lt;&lt; 1);
+    }
+    if (num &amp; (1 &lt;&lt; 0)) {
+      this.col.set("createInstantInvite", true);
+      num -= (1 &lt;&lt; 0);
+    }
+  }
 
-    this.email = data.email || null;
-    this.locale = data.locale || null;
-    this.mfaEnabled = data.mfa_enabled;
-    this.verified = data.verified;
+  has(key) {
+    return this.col.has(key);
+  }
+
+  /**
+   * Check whether the member has a certain permission.
+   * Will return false if a member is not found in the members cahce, so we suggest
+   * for this to be accurate, enable `Client#getAllMembers`
+   * @param {Snowflake} member The id of the member to check permissions for
+   * @param {String} permission The permission to check from the memebr
+   * @returns {Boolean}
+   */
+
+  for(member, permission) {
+    if (!this.guild.members.has(member)) return false;
+
+    return this.guild.members.get(member).permissions.has(permission);
   }
 };
 
-module.exports = ClientUser;</code></pre>
+module.exports = Permission;</code></pre>
         </article>
     </section>
 

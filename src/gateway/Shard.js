@@ -28,6 +28,9 @@ try {
 /**
  * @class Represents a Discord Shard
  * @prop {String} id The id of the Shard
+ * @prop {Store} guilds A store of guilds of each Shard
+ * @prop {Number} ms The uptime of a shard in ms
+ * @prop {Number} latency The API Latency of the Shard in ms
  */
 
 class Shard {
@@ -46,6 +49,33 @@ class Shard {
 
   get uptime() {
     return this.startTime ? Date.now() - this.startTime : 0;
+  }
+
+  /**
+   * Sends an activity to the shard
+   * @param {Object} [options] The options for the Activity
+   * @param {Number} [options.since=null] Unix time (in milliseconds) of when the client went idle, or null if the client is not idle
+   * @param {Object} [options.game=null] The user's new activity
+   * @param {String} [options.game.name=null] The activity's name
+   * @param {Number} [options.game.type=0] The [activity's type](https://discordapp.com/developers/docs/topics/gateway#activity-object-activity-types)
+   * @param {String} [options.game.url=null] The url of the activity ( Only for game type 1 )
+   * @param {String} [options.status='online'] The new status of the client
+   * @param {Boolean} [options.afk=false] Whether or not the client is afk
+   * @returns {Object} The options for the Activity
+   */
+
+  setActivity(options = {}) {
+    this.send({
+      op: 3,
+      d: {
+        game: options.game || this.client.presence.game,
+        since: options.sicne || this.client.presence.since,
+        afk: Boolean(options.afk) || this.client.presence.afk,
+        status: options.status || this.client.presence.status,
+      }
+    });
+
+    return options;
   }
 
   /**
@@ -245,10 +275,20 @@ class Shard {
     return this;
   }
 
+  /**
+   * Sends data to the websocket
+   * @param {Any} data The data to send
+   * @returns {Data}
+   */
+
   send(data) {
     this.ws.send(typeof data === 'object' ? JSON.stringify(data) : data);
     return data;
   }
+
+  /**
+   * Sends an Opcode 8 ( Request Guild Members ) to discord
+   */
 
   fetchAllMembers(guilds) {
     return this.send({ op: 8, d: {
@@ -258,6 +298,10 @@ class Shard {
       }
     });
   }
+
+  /**
+   * Sends the identify payload to discord for logging in
+   */
 
   identify() {
     return this.send({

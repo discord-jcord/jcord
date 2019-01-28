@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>models/ClientUser.js - Documentation</title>
+    <title>gateway/events/guildmemberschunk.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">models/ClientUser.js</h1>
+    <h1 class="page-title">gateway/events/guildmemberschunk.js</h1>
     
 
     
@@ -43,35 +43,54 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const User = require('./User');
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+// models
+const User = require('../../models/User');
+const Member = require('../../models/Member');
 
 /**
- * @extends User
- * @prop {String} avatar The avatar hash of the user
- * @prop {String} avatarURL The url of the user's avatar
- * @prop {Boolean} bot Whether the user is a bot or not
- * @prop {String} discriminator The discriminator of the user
- * @prop {String?} email The email of the client
- * @prop {Snowflake} id The id of the user
- * @prop {Boolean} mfaEnabled Whether the client has mfa enabled
- * @prop {String} tag The tag of the user
- * @prop {String} username The username of the user
- * @prop {Boolean} verified Whether the client is verified
+ * Emitted when a guild requests all members to be fetched
+ * @event Client.GUILD_MEMBERS_CHUNK
+ * @prop {Guild} guild The guild that requested for all members to be fetced
  */
 
-class ClientUser extends User {
-  constructor(client, data) {
-    super(client, data);
-    Object.defineProperty(this, 'client', { value: client });
+class GuildMembersChunk {
+  constructor() {}
 
-    this.email = data.email || null;
-    this.locale = data.locale || null;
-    this.mfaEnabled = data.mfa_enabled;
-    this.verified = data.verified;
+  emit(shard, packet) {
+    let guild = shard.client.guilds.get(packet.d.guild_id);
+
+    for (var i = 0; i &lt; packet.d.members.length; i++) {
+      packet.d.members[i].guild = guild;
+      
+      guild.members.set(packet.d.members[i].user.id, new Member(shard.client, packet.d.members[i]));
+      shard.client.users.set(packet.d.members[i].user.id, new User(shard.client, packet.d.members[i].user));
+    };
+
+    shard.totalMemberCountOfGuildMemberChunk += packet.d.members.length;
+
+    shard.client.guilds.set(guild.id, guild);
+
+    if (shard.totalMemberCountOfGuildMemberChunk === shard.totalMemberCount &amp;&amp; shard.status !== 'ready') {
+      shard.startTime = Date.now();
+      shard.client.connectedShards.set(shard.id, shard);
+      shard.client.shards.set(shard.id, shard);
+      shard.status = 'ready';
+
+      shard.client.emit('SHARD_READY', shard);
+
+      if (shard.client.connectedShards.size === shard.client.shardCount) {
+        shard.client.status = 'ready';
+        shard.client.emit('READY');
+      };
+    };
+
+    shard.client.emit('GUILD_MEMBERS_CHUNK', guild);
   }
 };
 
-module.exports = ClientUser;</code></pre>
+module.exports = GuildMembersChunk;</code></pre>
         </article>
     </section>
 

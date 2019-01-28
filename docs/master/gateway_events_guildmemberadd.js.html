@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>models/ClientUser.js - Documentation</title>
+    <title>gateway/events/guildmemberadd.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">models/ClientUser.js</h1>
+    <h1 class="page-title">gateway/events/guildmemberadd.js</h1>
     
 
     
@@ -43,35 +43,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const User = require('./User');
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+// models
+const User = require('../../models/User');
+const Member = require('../../models/Member');
 
 /**
- * @extends User
- * @prop {String} avatar The avatar hash of the user
- * @prop {String} avatarURL The url of the user's avatar
- * @prop {Boolean} bot Whether the user is a bot or not
- * @prop {String} discriminator The discriminator of the user
- * @prop {String?} email The email of the client
- * @prop {Snowflake} id The id of the user
- * @prop {Boolean} mfaEnabled Whether the client has mfa enabled
- * @prop {String} tag The tag of the user
- * @prop {String} username The username of the user
- * @prop {Boolean} verified Whether the client is verified
+ * Emits once a user joins a guild
+ * @event Client.GUILD_MEMBER_ADD
+ * @prop {Member} member The member object that joined
+ * @prop {Guild} guild The guild the member joined
  */
 
-class ClientUser extends User {
-  constructor(client, data) {
-    super(client, data);
-    Object.defineProperty(this, 'client', { value: client });
+class GuildMemberAdd {
+  constructor() {}
 
-    this.email = data.email || null;
-    this.locale = data.locale || null;
-    this.mfaEnabled = data.mfa_enabled;
-    this.verified = data.verified;
+  emit(shard, packet) {
+    if (!packet.d.guild_id) return shard.client.emit('error', new Error('NEW MEMBER ON GUILD BUT NO GUILD FOUND!'));
+
+    if (!shard.client.users.has(packet.d.user.id)) {
+      shard.client.users.set(packet.d.user.id, new User(shard.client, packet.d.user));
+    };
+
+    let guild = shard.client.guilds.get(packet.d.guild_id);
+    guild.memberCount++;
+
+    packet.d.guild = guild;
+    let member = guild.members.set(packet.d.user.id, new Member(shard.client, packet.d));
+
+    shard.client.guilds.set(guild.id, guild);
+    shard.client.emit('GUILD_MEMBER_ADD', member, guild);
   }
 };
 
-module.exports = ClientUser;</code></pre>
+module.exports = GuildMemberAdd;</code></pre>
         </article>
     </section>
 
