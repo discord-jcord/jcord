@@ -35,6 +35,10 @@ class GuildMemberUpdate {
       roles.set(packet.d.roles[i], guild.roles.get(packet.d.roles[i]));
     };
 
+    if (!roles.has(guild.id)) {
+      roles.set(guild.roles.get(guild.id).id, guild.roles.get(guild.id));
+    };
+
     member.nick = packet.d.nick;
     member.roles = roles;
     

@@ -28,8 +28,10 @@ class Member {
     this.roles = new Store();
 
     for (var i = 0; i < data.roles.length; i++) {
-      var role = this.guild ? this.guild.roles.get(data.roles[i]) : this.client.emit('error', new Error('ROLE found but not Guild!'));
-      this.roles.set(role.id, role);
+      let role = this.guild ? this.guild.roles.get(data.roles[i]) : this.client.emit('error', new Error('ROLE found but not Guild!'));
+      if (role || role && !this.roles.has(role.id)) {
+        this.roles.set(role.id, role);
+      }
     };
 
     if (!this.roles.has(this.guild.id)) {

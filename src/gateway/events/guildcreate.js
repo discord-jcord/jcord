@@ -7,8 +7,6 @@ class GuildCreate {
   constructor() {}
 
   emit(shard, packet) {
-    shard.guildLength--;
-
     let guild = new Guild(shard.client, packet.d);
 
     // Set the guild to cache
@@ -16,6 +14,8 @@ class GuildCreate {
 
     // Set the guild to the shard cache
     shard.guilds.set(guild.id, guild);
+
+    shard.guildLength--;  
 
     if (shard.client.getAllMembers) {
       shard.totalMemberCount += guild.memberCount;
@@ -53,7 +53,7 @@ class GuildCreate {
       if (shard.client.connectedShards.size === shard.client.shardCount) {
         shard.client.startTime = Date.now();
         shard.client.status = 'ready';
-        shard.client.emit('READY');
+        return shard.client.emit('READY');
       }
     };
 
@@ -63,7 +63,7 @@ class GuildCreate {
      * @prop {Guild} guild The guild that became available
      */
 
-    shard.client.emit('GUILD_CREATE', guild);
+    return shard.client.emit('GUILD_CREATE', guild);
   }
 };
 

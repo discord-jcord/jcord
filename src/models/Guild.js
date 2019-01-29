@@ -67,6 +67,8 @@ class Guild extends UnavailableGuild {
     this.systemChannelID = data.system_channel_id;
     this.verificationLevel = data.verification_level;
     this.voiceStates = data.voice_states;
+    
+    Object.defineProperty(this, '_roleStatus', { value: false, writable: true });
 
     for (var i = 0; i < data.channels.length; i++) {
       data.channels[i].guild = this;

@@ -20,21 +20,21 @@ class Ready {
       shard.client.guilds.set(packet.d.guilds[i].id, new UnavailableGuild(this.client, packet.d.guilds[i]));
     };
 
-    if (packet.d.guilds.length === 0) {
-
-      // Emit a SHARD_READY event
-      shard.client.emit('SHARD_READY', shard);
+    if (packet.d.guilds.length == 0) {
       
       shard.status = 'ready';
       shard.client.shards.set(shard.id, shard);
       shard.client.connectedShards.set(shard.id, shard);
+
+      // Emit a SHARD_READY event
+      shard.client.emit('SHARD_READY', shard);
 
       if (shard.client.connectedShards.size === shard.client.shardCount && shard.client.status !== 'ready') {
 
         shard.client.status = 'ready';
 
         // Emit a READY event
-        shard.client.emit('READY');
+        return shard.client.emit('READY');
       }
     };
 
