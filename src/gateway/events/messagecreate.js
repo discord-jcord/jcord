@@ -2,6 +2,7 @@
 
 // models
 const Message = require('../../models/Message');
+const User = require('../../models/User');
 
 /**
  * Emitted once a message is seen/sent
@@ -12,16 +13,9 @@ const Message = require('../../models/Message');
 class MessageCreate {
   constructor() {}
 
-  async emit(shard, packet) {
+  emit(shard, packet) {
     if (!shard.client.users.has(packet.d.author.id)) {
-      await shard.client.getUser(packet.d.author.id);
-    }
-
-    if (packet.d.guild_id) {
-      let guild = shard.client.guilds.get(packet.d.guild_id);
-
-      if (!guild.members.has(packet.d.author.id))
-        await guild.getMember(packet.d.author.id);
+      shard.client.users.set(packet.d.author.id, new User(shard.client, packet.d.author))
     }
 
     let message = new Message(shard.client, packet.d);
