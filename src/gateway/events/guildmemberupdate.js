@@ -39,11 +39,12 @@ class GuildMemberUpdate {
       roles.set(guild.roles.get(guild.id).id, guild.roles.get(guild.id));
     };
   
-    member = await guild.getMember(packet.d.user.id);
-    member.nick = packet.d.nick;
-    member.roles = roles;
+    if (member) {
+      member.nick = packet.d.nick;
+      member.roles = roles;
+    }
 
-    guild.members.set(packet.d.user.id, member);
+    member = guild.members.set(packet.d.user.id, member);
 
     shard.client.emit('GUILD_MEMBER_UPDATE', oldMember, member);
   }
