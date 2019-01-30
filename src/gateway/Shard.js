@@ -324,7 +324,9 @@ class Shard {
         break;
 
       case 'MESSAGE_CREATE':
-        new MessageCreate().emit(this, packet);
+        (async() => {
+          await new MessageCreate().emit(this, packet);
+        })();
         break;
 
       case 'GUILD_MEMBER_ADD':
