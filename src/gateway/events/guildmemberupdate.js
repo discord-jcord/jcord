@@ -14,7 +14,7 @@ const Store = require('../../utils/Store');
 class GuildMemberUpdate {
   constructor() {}
 
-  emit(shard, packet) {
+  async emit(shard, packet) {
     if (!packet.d.guild_id) return shard.client.emit('error', new Error('GUILD MEMBER UPDATED BUT MISSING GUILD!'));
 
     let guild = shard.client.guilds.get(packet.d.guild_id);
@@ -38,10 +38,11 @@ class GuildMemberUpdate {
     if (!roles.has(guild.id)) {
       roles.set(guild.roles.get(guild.id).id, guild.roles.get(guild.id));
     };
-
+  
+    member = await guild.getMember(packet.d.user.id);
     member.nick = packet.d.nick;
     member.roles = roles;
-    
+
     guild.members.set(packet.d.user.id, member);
 
     shard.client.emit('GUILD_MEMBER_UPDATE', oldMember, member);

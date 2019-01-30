@@ -338,7 +338,9 @@ class Shard {
         break;
       
       case 'GUILD_MEMBER_UPDATE':
-        new GuildMemberUpdate().emit(this, packet);
+        (async() => {
+          new GuildMemberUpdate().emit(this, packet);
+        })();
         break;
 
       case 'GUILD_ROLE_CREATE':
