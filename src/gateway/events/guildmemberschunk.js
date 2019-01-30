@@ -28,6 +28,16 @@ class GuildMembersChunk {
     shard.client.guilds.set(guild.id, guild);
 
     if (shard.totalMemberCountOfGuildMemberChunk === shard.totalMemberCount && shard.status !== 'ready') {
+      if (shard.status === 'reconnecting') {
+        shard.startTime = Date.now();
+        shard.status = 'ready';
+        shard.client.connectedShards.set(shard.id, shard);
+        shard.client.shards.set(shard.id, shard);
+        shard.client.emit('SHARD_READY', shard);
+
+        return;
+      }
+
       shard.startTime = Date.now();
       shard.client.connectedShards.set(shard.id, shard);
       shard.client.shards.set(shard.id, shard);

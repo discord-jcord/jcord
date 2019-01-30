@@ -8,6 +8,7 @@ const User = require('../models/User');
 const { ENDPOINTS } = require('../utils/Constants').HTTP;
 const DMChannel = require('../models/DMChannel');
 const Message = require('../models/Message');
+const { PERMISSIONS } = require('../utils/Constants');
 
 /**
  * @extends EventEmitter Represents a Discord Client
@@ -68,9 +69,14 @@ class Client extends EventEmitter {
       afk: false
     };
 
+    Object.defineProperty(this, 'permissions', { value: new Store() });
     Object.defineProperty(this, 'connectedShards', { value: new Store() });
     Object.defineProperty(this, 'token', { value: null, writable: true });
     Object.defineProperty(this, 'presence', { value: client_activity, writable: true });
+
+    for (var i of Object.entries(PERMISSIONS)) {
+      this.permissions.set(i[0], i[1]);
+    }
   }
 
   get uptime() {

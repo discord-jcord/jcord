@@ -1,3 +1,6 @@
+"use strict";
+
+// models & utils
 const Store = require('../utils/Store');
 const User = require('./User');
 const Permissions = require('../utils/Permissions');

@@ -16,7 +16,7 @@ class GuildCreate {
     shard.guilds.set(guild.id, guild);
 
     shard.guildLength--;  
-
+    
     if (shard.client.getAllMembers) {
       shard.totalMemberCount += guild.memberCount;
 

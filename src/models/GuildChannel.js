@@ -1,8 +1,10 @@
+"use strict";
+
+// models & utils
 const Channel = require('./Channel');
 const { ENDPOINTS } = require('../utils/Constants').HTTP;
-/*const TextChannel = require('./TextChannel');
-const CategoryChannel = require('./CategoryChannel');
-const VoiceChannel = require('./VoiceChannel');*/
+const Permissions = require('../utils/Permissions');
+const Store = require('../utils/Store');
 
 /**
  * @extends Channel Represents a Guild Channel
@@ -65,6 +67,55 @@ class GuildChannel extends Channel {
         return this.guild ? this.guild.role.get(userOrRole) : null;
       }
     }); 
+  }
+
+  /**
+   * Checks a certain permission for a member in a Guild Channel
+   * * This function is still in testing and might not work. ( Small Chance of not working )
+   * @param {Snowlake} memberID The id of the member
+   * @param {String} permissionName The name of the permission to check
+   * @returns {Boolean}
+   */
+
+  permissionsFor(memberID, permissionName) {
+    let member = this.guild.members.get(memberID);
+    let permissions = this.client.permissions.get(permissionName);
+
+    // If the member has administrator permissions, return true since administrator overrides any Channel overwrite 
+    if (member.permissions.has('administrator')) return true;
+
+    // Overwrites cache
+    let overwrites = new Store();
+
+    for (var i = 0; i < this.permissionOverwrites.length; i++) {
+      overwrites.set(this.permissionOverwrites[i].id, this.permissionOverwrites[i]);
+    };
+
+    // Role Specific Overwrites
+    let roleIDs = member.roles.keyArray()
+    let perm_allow = 0;
+    let perm_deny = 0;
+
+    for (var roleID in roleIDs) {
+      let role = overwrites.get(roleIDs[roleID]);
+
+      if (role) {
+        perm_allow |= role.allow;
+        perm_deny |= role.deny;
+      };
+    };
+
+    permissions |= perm_allow;
+    permissions &= ~perm_deny;
+
+    // Member specific Overwrites
+    let overwrite_member = overwrites.get(member.user.id);
+    if (overwrite_member) {
+      permissions &= ~overwrite_member.deny;
+      permissions |= overwrite_member.allow;
+    }
+
+    return new Permissions(permissions, this.guild).has(permissionName);
   }
 
   /**

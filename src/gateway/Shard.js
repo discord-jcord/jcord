@@ -5,6 +5,8 @@ const Store = require('../utils/Store');
 
 // events
 const ChannelCreate = require('./events/channelcreate');
+const ChannelUpdate = require('./events/channelupdate');
+const ChannelDelete = require('./events/channeldelete');
 const Ready = require('./events/ready');
 const GuildCreate = require('./events/guildcreate');
 const GuildMembersChunk = require('./events/guildmemberschunk');
@@ -45,10 +47,44 @@ class Shard {
     Object.defineProperty(this, 'startTime', { value: 0, writable: true });
     Object.defineProperty(this, 'totalMemberCount', { value: 0, writable: true });
     Object.defineProperty(this, 'totalMemberCountOfGuildMemberChunk', { value: 0, writable: true });
+    Object.defineProperty(this, 'fromReconnect', { value: false, writable: true });
   }
 
   get uptime() {
     return this.startTime ? Date.now() - this.startTime : 0;
+  }
+  
+  /**
+   * Disconnect/Reconnects a shard
+   * @param {Boolean} [reconnect=false] Whether or not to reconnect
+   * @return {Shard}
+   */
+
+  disconnect(reconnect = false) {
+    if (!this.ws) return;
+
+    if (this.heartbeatInterval) {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = null;
+    }
+
+    try {
+      if (reconnect) {
+        this.client.emit('SHARD_RECONNECT', { id: this.id });
+        this.status = 'reconnecting';
+        this.ws.terminate();
+        this.ws = null;
+        setTimeout(() => {
+          this.connect(true);
+        }, 5000);
+      } else {
+        this.ws.close(1000);
+      }
+    } catch(error) {
+      this.client.emit('error', error);
+    }
+    
+    return this;
   }
 
   /**
@@ -107,6 +143,8 @@ class Shard {
   connect(reconnected = false) {
     this.initiate();
 
+    if (reconnected) this.fromReconnect = true;
+
     /**
      * Emitted once a Shard is loading, inner data is a partial Shard Data
      * @event Client.SHARD_LOADING
@@ -137,6 +175,73 @@ class Shard {
 
       this.listen_message(packet);
     });
+
+    this.ws.onclose = (event) => {
+      let err = !event.code || event.code === 1000 ? null : new Error(event.code + ": " + event.reason);
+      let reconnect = true;
+      if (event.code) {
+        this.client.emit("debug", `${event.code === 1000 ? "Clean" : "Unclean"} WS close: ${event.code}: ${event.reason}`, this.id);
+        if (event.code === 4001) {
+          err = new Error("Gateway received invalid OP code");
+        } else if (event.code === 4002) {
+          err = new Error("Gateway received invalid message");
+        } else if (event.code === 4003) {
+          err = new Error("Not authenticated");
+        } else if (event.code === 4004) {
+          err = new Error("Authentication failed");
+          reconnect = false;
+          this.client.emit("error", new Error(`Invalid token: ${this.client.token}`));
+        } else if (event.code === 4005) {
+          err = new Error("Already authenticated");
+        } else if (event.code === 4006 || event.code === 4009) {
+          err = new Error("Invalid session");
+          this.sessionID = null;
+        } else if (event.code === 4007) {
+          err = new Error("Invalid sequence number: " + this.seq);
+          this.seq = 0;
+        } else if (event.code === 4008) {
+          err = new Error("Gateway connection was ratelimited");
+        } else if (event.code === 4010) {
+          err = new Error("Invalid shard key");
+          reconnect = false;
+        } else if (event.code === 4011) {
+          err = new Error("Shard has too many guilds (>2500)");
+          reconnect = false;
+        } else if (event.code === 1006) {
+          err = new Error("Connection reset by peer");
+        } else if (!event.wasClean && event.reason) {
+          err = new Error(event.code + ": " + event.reason);
+        }
+      } else {
+        this.client.emit("debug", "WS close: unknown code: " + event.reason, this.id);
+      }
+      this.disconnect(reconnect);
+
+      if (this.client.connectedShards.has(this.id.toString()))
+        this.client.connectedShards.delete(this.id.toString());
+
+      this.status = 'closed';
+      this.disconnect(false)
+
+      if (this.client.connectedShards.size === 0)
+        /**
+         * Emitted once all shards disconnect
+         * @event Client.SHARD_DISCONNECT_ALL
+         * @prop {Object} data The data of the event
+         * @prop {String} data.message The message
+         */
+        this.client.emit('SHARD_DISCONNECT_ALL', { message: 'All Shards has been disconnected!' });
+      
+      /**
+       * Emitted once a Shard Disconnects
+       * @event Client.SHARD_DISCONNECT
+       * @prop {Shard} shard Partial Shard data
+       * @prop {String} shard.id Id of the shard
+       * @prop {String} shard.description Description of the disconnect
+       * @prop {String} shard.reason Websocket reason for the disconnect
+       */
+      this.client.emit('SHARD_DISCONNECT', ({ id: this.id, description: `Shard Disconnected with Close Code: ${event.code}`, reason: event.reason || 'No reason given' }));
+    };
 
     return this;
   }
@@ -179,8 +284,15 @@ class Shard {
         } else {
           // Debugger #2
           this.client.emit('debug', { shard: this.id, message: 'Received Opcode 9 ( Invalid Session ). Will resume.' });
+          this.disconnect();
 
+          this.ws = new Websocket(`${this.client.gatewayURL}?v=6&encoding=json`);
+          this.ws.on('open', () => this.resume());
         }
+        break;
+
+      case 7:
+        this.disconnect(true);
         break;
     };
 
@@ -241,6 +353,14 @@ class Shard {
 
       case 'CHANNEL_CREATE':
         new ChannelCreate().emit(this, packet);
+        break;
+
+      case 'CHANNEL_UPDATE':
+        new ChannelUpdate().emit(this, packet);
+        break;
+
+      case 'CHANNEL_DELETE':
+        new ChannelDelete().emit(this, packet);
         break;
     }
   }
@@ -317,6 +437,21 @@ class Shard {
         shard: [typeof this.id === 'number' ? this.id : parseInt(this.id), this.client.shardCount]
       }
     });
+  }
+
+  /**
+   * Sends an Opcode 6 ( Resume ) to Discord
+   */
+
+  resume() {
+    return this.send({
+      op: 6,
+      d: {
+        token: this.client.token,
+        session_id: this.sessionID,
+        seq: this.seq
+      }
+    })
   }
 };
 

@@ -133,7 +133,7 @@ client.initiate(client.token);
 
 ## To-do List
 - [x] Internal Sharding  
-- [ ] Disconnection Handling  
+- [x] Disconnection Handling  
 - [x] Make code readable  
 - [x] Seperate events in multiple files  
 - [ ] Update `Client#PRESENCE_UPDATE`  
