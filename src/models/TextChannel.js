@@ -193,6 +193,7 @@ class TextChannel extends GuildChannel {
   patchEmbed(message, embed) {
     return this.client.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(this.id, message), {
       data: {
+        content: null,
         embed: embed.hasOwnProperty('embed') ? embed.embed : embed
       }
     }).then(res => {
@@ -210,7 +211,8 @@ class TextChannel extends GuildChannel {
   patchMessage(message, content) {
     return this.client.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(this.id, message), {
       data: {
-        content
+        content,
+        embed: null
       }
     }).then(res => {
       return new Message(this.client, res.data);
