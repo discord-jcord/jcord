@@ -17,6 +17,7 @@ class ChannelCreate {
 
   emit(shard, packet) {
     let guild = shard.client.guilds.get(packet.d.guild_id);
+    packet.d.guild = guild;
 
     switch (packet.d.type) {
       case 0:

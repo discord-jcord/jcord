@@ -18,6 +18,7 @@ class ChannelUpdate {
   
   emit(shard, packet) {
     let guild = packet.d.guild_id ? shard.client.guilds.get(packet.d.guild_id) : null;
+    packet.d.guild = guild;
     let newChannel;
     let oldChannel = shard.client.channels.get(packet.d.id);
 
