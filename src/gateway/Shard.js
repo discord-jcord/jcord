@@ -212,6 +212,8 @@ class Shard {
         } else if (!event.wasClean && event.reason) {
           err = new Error(event.code + ": " + event.reason);
         }
+
+        this.client.emit('debug', { shard: this.id, message: err.message });
       } else {
         this.client.emit("debug", "WS close: unknown code: " + event.reason, this.id);
       }
