@@ -54,7 +54,7 @@ class Message {
   }
 
   get member() {
-    return this.channel.guild ? this.channel.guild.members.get(this.author.id) : null;
+    return this.channel.guild ? this.channel.guild.members.get(this.author.id) || null : null;
   }
 
   get roleMentions() {
@@ -73,9 +73,9 @@ class Message {
 
   patch(options = {}) {
     if (options.content && typeof options.content === 'string') {
-      return this.channel.patchMessage(this.id, options.content);
+      return this.channel.patchMessage(this.id, options.content || null);
     } else if (options.embed && typeof options.embed === 'object') {
-      return this.channel.patchEmbed(this.id, options.embed);
+      return this.channel.patchEmbed(this.id, options.embed || null);
     } else {
       this.client.emit('error', new Error('Invalid options!'));
       return false;

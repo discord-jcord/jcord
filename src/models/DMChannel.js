@@ -3,6 +3,7 @@
 const Channel = require('./Channel');
 const User = require('./User');
 const Message = require('./Message');
+const { ENDPOINTS } = require('../utils/Constants').HTTP;
 
 /**
  * @extends Channel Represens a DM Channel.

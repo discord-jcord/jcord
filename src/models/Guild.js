@@ -336,7 +336,35 @@ class Guild extends UnavailableGuild {
         type
       }
     }).then(res => {
-      return this.channels.get(res.data.id);
+      if (this.channels.has(res.data.id)) {
+        return this.channels.get(res.data.id);
+      } else {
+        let guild = this;
+        res.data.guild = guild;
+
+        switch (res.data.type) {
+          case 0:
+            guild.channels.set(res.data.id, new TextChannel(this.client, res.data));
+            this.client.channels.set(res.data.id, new TextChannel(this.client, res.data));
+            break;
+
+          case 1:
+          this.client.channels.set(res.data.id, new DMChannel(this.client, res.data));
+            break;
+
+          case 2:
+            guild.channels.set(res.data.id, new VoiceChannel(this.client, res.data));
+            this.client.channels.set(res.data.id, new VoiceChannel(this.client, res.data));
+            break;
+
+          case 4:
+            guild.channels.set(res.data.id, new CategoryChannel(this.client, res.data));
+            this.client.channels.set(res.data.id, new CategoryChannel(this.client, res.data));
+            break;
+        };
+
+        return this.client.channels.get(res.data.id);
+      };
     });
   }
 

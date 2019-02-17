@@ -3,6 +3,7 @@
 // models & utils
 const Channel = require('./Channel');
 const { ENDPOINTS } = require('../utils/Constants').HTTP;
+const { PERMISSIONS } = require('../utils/Constants');
 const Permissions = require('../utils/Permissions');
 const Store = require('../utils/Store');
 
@@ -52,7 +53,8 @@ class GuildChannel extends Channel {
       options.deny = PERMISSIONS[options.deny];
     };
 
-    options.type = options.type.toLowerCase();
+    if (options.type)
+      options.type = options.type.toLowerCase();
 
     return this.client.rest.request("PUT", ENDPOINTS.CHANNEL_PERMISSION(this.id, userOrRole), {
       data: {
@@ -64,7 +66,7 @@ class GuildChannel extends Channel {
       if (options.type.toLowerCase() === 'member') {
         return this.guild ? this.guild.members.get(userOrRole) : null;
       } else if (options.type.toLowerCase() === 'role') {
-        return this.guild ? this.guild.role.get(userOrRole) : null;
+        return this.guild ? this.guild.roles.get(userOrRole) : null;
       }
     }); 
   }
