@@ -454,7 +454,7 @@ class Guild extends UnavailableGuild {
    */
 
   removeRole(user, role) {
-    return this.client.rest.request("DELTE", ENDPOINTS.GUILD_MEMBER_ROLE(this.id, user, role))
+    return this.client.rest.request("DELETE", ENDPOINTS.GUILD_MEMBER_ROLE(this.id, user, role))
     .then(() => {
       return this.members.get(user);
     });
