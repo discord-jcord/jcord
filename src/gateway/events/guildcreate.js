@@ -10,6 +10,15 @@ class GuildCreate {
     packet.d.shard = shard;
     let guild = new Guild(shard.client, packet.d);
 
+    // This variable will check if it is a new guild or a guild became available
+    let new_guild;
+
+    // If the guild cache doesn't contain the guild id ( if it's in the cache, then a guild became available, if not it is a new one )
+    if (!shard.client.guilds.has(packet.d.id))
+      new_guild = true;
+    else
+      new_guild = false;
+
     // Set the guild to cache
     shard.client.guilds.set(guild.id, guild);
 
@@ -33,6 +42,15 @@ class GuildCreate {
         shard.status = 'ready';
         shard.client.connectedShards.set(shard.id, shard);
         shard.client.shards.set(shard.id, shard);
+
+        shard.guilds.forEach(guild => {
+          packet.d.shard = null;
+          let _Guild = new Guild(shard.client, packet.d);
+
+          shard.guilds.set(_Guild.id, _Guild);
+          shard.client.guilds.set(_Guild.id, _Guild);
+        });
+
         shard.client.emit('SHARD_READY', shard);
 
         return;
@@ -59,12 +77,18 @@ class GuildCreate {
     };
 
     /**
-     * Emitted once a guild becomes available or when a bot joins a guild
+     * Emitted once a guild becomes available
+     * @event Client.GUILD_AVAILABLE
+     * @prop {Guild} guild The guild that became available
+     */
+
+    /**
+     * Emitted once a bot joins a guild
      * @event Client.GUILD_CREATE
      * @prop {Guild} guild The guild that became available
      */
 
-    return shard.client.emit('GUILD_CREATE', guild);
+    return new_guild ? shard.client.emit('GUILD_CREATE', guild) : shard.client.emit('GUILD_AVAILABLE', guild)
   }
 };
 
