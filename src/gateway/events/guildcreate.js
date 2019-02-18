@@ -7,6 +7,7 @@ class GuildCreate {
   constructor() {}
 
   emit(shard, packet) {
+    packet.d.shard = shard;
     let guild = new Guild(shard.client, packet.d);
 
     // Set the guild to cache

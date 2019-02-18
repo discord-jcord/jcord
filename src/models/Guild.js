@@ -41,6 +41,7 @@ class Guild extends UnavailableGuild {
   constructor(client, data) {
     super(client, data);
     Object.defineProperty(this, 'client', { value: client });
+    Object.defineProperty(this, '_shard', { value: data.shard });
 
     this.afkChannelID = data.afk_channel_id;
     this.afkTimeout = data.afk_timeout;
@@ -128,7 +129,7 @@ class Guild extends UnavailableGuild {
   }
 
   get shard() {
-    return this.client.connectedShards.filter(shard => shard.guilds.has(this.id))[0];
+    return this._shard ? this._shard : this.client.shards.filter(shard => shard.guilds.has(this.id))[0];
   }
 
   get systemChannel() {
