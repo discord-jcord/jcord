@@ -7,6 +7,7 @@ class GuildDelete {
     let guild = shard.client.guilds.get(packet.d.id);
 
     shard.client.guilds.delete(guild.id);
+    shard.guilds.delete(guild.id);
 
     /**
      * Emitted once a Guild becomes Unavailable or the bot leaves a Guild
