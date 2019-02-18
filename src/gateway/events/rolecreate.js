@@ -16,9 +16,9 @@ class RoleCreate {
     if (!packet.d.guild_id) return shard.client.emit('error', new Error('ROLE CREATED BUT NO GUILD FOUND!'));
 
     let role = new Role(shard.client, packet.d.role);
-    let guild = shard.client.guilds.get(packet.d.guild_id);
+    role.guild = shard.client.guilds.get(packet.d.guild_id);
 
-    guild.roles.set(role.id, role);
+    role.guild.roles.set(role.id, role);
 
     shard.client.emit('ROLE_CREATE', role);
   }

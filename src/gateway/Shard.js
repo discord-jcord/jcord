@@ -9,6 +9,7 @@ const ChannelUpdate = require('./events/channelupdate');
 const ChannelDelete = require('./events/channeldelete');
 const Ready = require('./events/ready');
 const GuildCreate = require('./events/guildcreate');
+const GuildDelete = require('./events/guilddelete');
 const GuildMembersChunk = require('./events/guildmemberschunk');
 const PresenceUpdate = require('./events/presenceupdate');
 const MessageCreate = require('./events/messagecreate');
@@ -215,7 +216,7 @@ class Shard {
 
         this.client.emit('debug', { shard: this.id, message: err.message });
       } else {
-        this.client.emit("debug", "WS close: unknown code: " + event.reason, this.id);
+        this.client.emit("debug", { shard: this.id, message: "WS close: unknown code: " + event.reason });
       }
       this.disconnect(reconnect);
 
@@ -365,6 +366,10 @@ class Shard {
 
       case 'CHANNEL_DELETE':
         new ChannelDelete().emit(this, packet);
+        break;
+
+      case 'GUILD_DELETE':  
+        new GuildDelete().emit(this, packet);
         break;
     }
   }
