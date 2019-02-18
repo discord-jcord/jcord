@@ -14,6 +14,11 @@ class GuildMemberRemove {
     if (!packet.d.guild_id) return shard.client.emit('error', new Error('MEMBER LEFT GUILD BUT NO GUILD FOUND!'));
 
     let guild = shard.client.guilds.get(packet.d.guild_id);
+
+    // If no guild was found, we should not emit this event since it means that the bot left the guild
+    if (!guild)
+      return;
+      
     let member = guild.members.get(packet.d.user.id);
 
     guild.memberCount--;
