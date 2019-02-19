@@ -9,7 +9,7 @@
   },
   "peerDependencies": {
     "uws": "^99.0.0",
-    "depo": "github:boltxyz/depo",
+    "depo": "^0.0.3",
     "chalk": "^2.4.2"
   },
   "scripts": {
