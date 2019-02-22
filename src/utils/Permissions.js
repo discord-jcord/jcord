@@ -1,9 +1,8 @@
 const Store = require("./Store");
 
 class Permission {
-  constructor(num, guild) {
+  constructor(num) {
     this.col = new Store();
-    this.guild = guild;
 
     if ((num & 8) === 8) {
       num = 0b1111111111101111111110011111111;
@@ -124,21 +123,6 @@ class Permission {
 
   has(key) {
     return this.col.has(key);
-  }
-
-  /**
-   * Check whether the member has a certain permission.
-   * Will return false if a member is not found in the members cahce, so we suggest
-   * for this to be accurate, enable `Client#getAllMembers`
-   * @param {Snowflake} member The id of the member to check permissions for
-   * @param {String} permission The permission to check from the memebr
-   * @returns {Boolean}
-   */
-
-  for(member, permission) {
-    if (!this.guild.members.has(member)) return false;
-
-    return this.guild.members.get(member).permissions.has(permission);
   }
 };
 
