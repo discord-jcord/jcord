@@ -7,9 +7,11 @@ const Permissions = require('../utils/Permissions');
 
 /**
  * @class Represents a Guild Member
+ * @prop {Boolean} bannable Whether or not the client can ban this member
  * @prop {Boolean} deaf Whether the member is deaf on a Voice Channel
  * @prop {Object} guild The guild the member is in
  * @prop {Number} joinedTimestamp The time the Member joined the guild in ms
+ * @prop {Boolean} kickable Whether or not the client can kick this member
  * @prop {Boolean} muter Whether the member is muted
  * @prop {String?} nick The nickname of the member
  * @prop {Object} permissions The guild-wide permissions of the member
@@ -42,8 +44,48 @@ class Member {
     this.user = new User(this.client, data.user);
   }
 
+  get bannable() {
+    if (this.guild.ownerID === this.user.id) {
+      return false;
+    } else {
+      if (!this.guild.bot.permissions.has('banMembers')) {
+        return false;
+      } else {
+        let role_highest_position = {
+          user: Math.max(...(this.roles.map(role => role.position))),
+          bot: Math.max(...(this.guild.bot.roles.map(role => role.position)))
+        };
+
+        if (role_highest_position.user > role_highest_position.bot)
+          return false;
+        else
+          return true;
+      };
+    };
+  }
+
+  get kickable() {
+    if (this.guild.ownerID === this.user.id) {
+      return false;
+    } else {
+      if (!this.guild.bot.permissions.has('kickMembers')) {
+        return false;
+    } else {
+        let role_highest_position = {
+          user: Math.max(...(this.roles.map(role => role.position))),
+          bot: Math.max(...(this.guild.bot.roles.map(role => role.position)))
+        };
+
+        if (role_highest_position.user > role_highest_position.bot)
+          return false;
+        else
+          return true;
+      };
+    };
+  }
+
   get permissions() {
-    return new Permissions(this.guild.ownerID === this.user.id ? 8 : this.roles.valueArray().reduce((acc, val) => acc | val.permissions, 0), this.guild);
+    return new Permissions(this.guild.ownerID === this.user.id ? 8 : this.roles.valueArray().reduce((acc, val) => acc | val.permissions, 0));
   }
 };
 
