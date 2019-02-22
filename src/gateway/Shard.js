@@ -181,7 +181,7 @@ class Shard {
       let err = !event.code || event.code === 1000 ? null : new Error(event.code + ": " + event.reason);
       let reconnect = true;
       if (event.code) {
-        this.client.emit("debug", `${event.code === 1000 ? "Clean" : "Unclean"} WS close: ${event.code}: ${event.reason}`, this.id);
+        this.client.emit("debug", { shard: this.id, message: `${event.code === 1000 ? "Clean" : "Unclean"} WS close: ${event.code}: ${event.reason}` });
         if (event.code === 4001) {
           err = new Error("Gateway received invalid OP code");
         } else if (event.code === 4002) {
