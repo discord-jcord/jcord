@@ -166,6 +166,18 @@ class DMChannel extends Channel {
   patchMessage(options = {}) {
     return this.client.patchMessage(this.id, options);
   }
+
+  /**
+   * Sends a message to the channel
+   * @param {Object} options 
+   * @param {String} [options.content] The content of the message
+   * @param {Embed} [options.embed] The embed object of the message
+   * @returns {Promise<Message>}
+   */
+
+  send(options = {}) {
+    return this.client.sendMessage(this.id, options);
+  }
 };
 
 module.exports = DMChannel;
