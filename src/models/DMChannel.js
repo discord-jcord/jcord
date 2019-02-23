@@ -25,8 +25,8 @@ class DMChannel extends Channel {
   }
 
   /**
-   * Similar to `Client#createEmbed()`
    * Creates an embed to the channel
+   * @deprecated Use DMChannel#send() instead
    * @param {Object} embed The embed to send
    * @returns {Promise<Message>}
    */
@@ -36,8 +36,8 @@ class DMChannel extends Channel {
   }
 
   /**
-   * Similar to `Client#createMessage()`
    * Creates a message to the channel
+   * @deprecated Use DMChannel#send() instead
    * @param {String} content The content of the message
    * @returns {Promise<Message>}
    */
@@ -137,12 +137,14 @@ class DMChannel extends Channel {
 
   /**
    * Edits a message's embed, not content!
+   * @deprecated Use TextChannel#patchMessage() instead.
    * @param {Snowflake} message The id of the message to edit
    * @param {String} content The new embed of the message, not content!
    * @returns {Promise<Message>}
    */
 
   patchEmbed(message, embed) {
+    this.deprecator.deprecate('TextChannel', 'patchEmbed', 'TextChannel', 'patchMessage');
     return this.client.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(this.id, message), {
       data: {
         embed: embed.hasOwnProperty('embed') ? embed.embed : embed
@@ -153,20 +155,16 @@ class DMChannel extends Channel {
   }
 
   /**
-   * Edits a message's content, not embed!
-   * @param {Snowflake} message The id of the message to edit
-   * @param {String} content The new content of the message, not embed!
+   * Edits a message
+   * @param {Object} options Options for the message editing
+   * @param {String} options.content The content of the message
+   * @param {Embed} options.embed The embed for the message
+   * @param {Snowflake} options.message The id of the message
    * @returns {Promise<Message>}
    */
 
-  patchMessage(message, content) {
-    return this.client.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(this.id, message), {
-      data: {
-        content
-      }
-    }).then(res => {
-      return new Message(this.client, res.data);
-    });
+  patchMessage(options = {}) {
+    return this.client.patchMessage(this.id, options);
   }
 };
 

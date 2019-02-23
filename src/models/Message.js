@@ -67,19 +67,13 @@ class Message {
    * Edits a message
    * @param {Object} options Options for the message editing
    * @param {String} options.content The content of the message
-   * @param {Object} options.embed The embed for the message
+   * @param {Embed} options.embed The embed for the message
+   * @param {Snowflake} options.message The id of the message
    * @returns {Promise<Message>}
    */
 
   patch(options = {}) {
-    if (options.content && typeof options.content === 'string') {
-      return this.channel.patchMessage(this.id, options.content || null);
-    } else if (options.embed && typeof options.embed === 'object') {
-      return this.channel.patchEmbed(this.id, options.embed || null);
-    } else {
-      this.client.emit('error', new Error('Invalid options!'));
-      return false;
-    };
+    return this.channel.patchMessage(options);
   }
 
   toString() {

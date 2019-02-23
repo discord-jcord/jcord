@@ -3,4 +3,5 @@ module.exports = {
   CommandCreator: require('./command/Creator'),
   EmbedBuilder: require('./utils/EmbedBuilder'),
   Store: require('./utils/Store'),
+  Version: require('../package.json').version
 };

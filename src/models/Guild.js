@@ -108,6 +108,10 @@ class Guild extends UnavailableGuild {
       data.members[i].guild = this;
       this.members.set(data.members[i].user.id, new Member(this.client, data.members[i]));
     };
+
+    for (var i = 0; i < this.presences.length; i++) {
+      this.client._presences.set(this.presences[i].user.id, { status: this.presences[i].status, game: this.presences[i].game });
+    };
   }
 
   get afkChannel() {
@@ -117,8 +121,8 @@ class Guild extends UnavailableGuild {
   get bans() {
     return (async () => {
       return await this.client.rest.request("GET", ENDPOINTS.GUILD_BANS(this.id)).data;
-  })();
-}
+    })();
+  }
 
   get bot() {
     return this.members.get(this.client.user.id);

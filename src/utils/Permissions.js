@@ -1,5 +1,9 @@
 const Store = require("./Store");
 
+/**
+ * @class The guild-wide or channel permissions of the member
+ */
+
 class Permission {
   constructor(num) {
     this.col = new Store();
@@ -120,6 +124,12 @@ class Permission {
       num -= (1 << 0);
     }
   }
+
+  /**
+   * Check if the permission is present
+   * @param {String} key The name of the permission
+   * @returns {Boolean}
+   */
 
   has(key) {
     return this.col.has(key);

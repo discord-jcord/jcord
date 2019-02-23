@@ -25,6 +25,14 @@ class User {
     this.username = data.username;
   }
 
+  get presence() {
+    if (!this.client._presences.has(this.id)) {
+      return this.client._presences.set(this.id, { status: 'offline', game: null });
+    } else {
+      return this.client._presences.get(this.id);
+    };
+  }
+
   /**
    * Similar to `Client#createDM()`
    * @returns {Promise<DMChannel>}

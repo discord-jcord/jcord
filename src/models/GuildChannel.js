@@ -117,7 +117,7 @@ class GuildChannel extends Channel {
       permissions |= overwrite_member.allow;
     }
 
-    return new Permissions(permissions, this.guild).has(permissionName);
+    return new Permissions(permissions).has(permissionName);
   }
 
   /**
