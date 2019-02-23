@@ -14,7 +14,7 @@ const Permissions = require('../utils/Permissions');
  * @prop {Boolean} kickable Whether or not the client can kick this member
  * @prop {Boolean} muter Whether the member is muted
  * @prop {String?} nick The nickname of the member
- * @prop {Object} permissions The guild-wide permissions of the member
+ * @prop {Permission} permissions The guild-wide permissions of the member
  * @prop {Store} roles The roles of the member
  * @prop {Object} user The user object of the member
  */
@@ -85,7 +85,22 @@ class Member {
   }
 
   get permissions() {
-    return new Permissions(this.guild.ownerID === this.user.id ? 8 : this.roles.valueArray().reduce((acc, val) => acc | val.permissions, 0));
+    if (this.guild.ownerID === this.user.id) {
+      return new Permissions(8);
+    };
+
+    let role_everyone = this.guild.roles.get(this.guild.id);
+    let permissions = role_everyone.permissions;
+
+    this.roles.forEach(role => {
+      permissions |= role.permissions;
+    });
+
+    if ((permissions & 0x00000008) === 0x00000008) {
+      return new Permissions(8);
+    };
+
+    return new Permissions(permissions);
   }
 };
 
