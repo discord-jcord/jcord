@@ -156,15 +156,15 @@ class DMChannel extends Channel {
 
   /**
    * Edits a message
+   * @param {Snowflake} message The id of the message
    * @param {Object} options Options for the message editing
    * @param {String} options.content The content of the message
    * @param {Embed} options.embed The embed for the message
-   * @param {Snowflake} options.message The id of the message
    * @returns {Promise<Message>}
    */
 
-  patchMessage(options = {}) {
-    return this.client.patchMessage(this.id, options);
+  patchMessage(message, options = {}) {
+    return this.client.patchMessage(this.id, message, options);
   }
 
   /**

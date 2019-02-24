@@ -73,7 +73,7 @@ class Message {
    */
 
   patch(options = {}) {
-    return this.channel.patchMessage(options);
+    return this.channel.patchMessage(this.id, options);
   }
 
   toString() {
