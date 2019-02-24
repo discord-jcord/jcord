@@ -57,15 +57,15 @@ please install "depo"
 
       for (var i = 0; i < commandData.args.length; i++) {
         if (commandData.args[i].type === 'number' && (!args[i] || isNaN(args[i]))) {
-          return msg.channel.createMessage(commandData.args[i].prompt);
+          return msg.channel.send({ content: commandData.args[i].prompt });
         } else if (commandData.args[i].type === 'string' && (!args[i] || typeof args[i] !== 'string')) {
-          return msg.channel.createMessage(commandData.args[i].prompt);
+          return msg.channel.send({ content: commandData.args[i].prompt });
         } else if (commandData.args[i].type === 'user') {
           let filteredTypes = commandData.args.filter(data => data.type === 'user');
           
           for (var c = 0; c < filteredTypes.length; c++) {
             if (!args[i] || !msg.mentions[c]) {
-              return msg.channel.createMessage(filteredTypes[c].prompt);
+              return msg.channel.send({ content: filteredTypes[c].prompt });
             }
           };
         } else if (commandData.args[i].type === 'channel') {
@@ -73,7 +73,7 @@ please install "depo"
           
           for (var c = 0; c < filteredTypes.length; c++) {
             if (!args[i] || !msg.channelMentions[c]) {
-              return msg.channel.createMessage(filteredTypes[c].prompt);
+              return msg.channel.send({ content: filteredTypes[c].prompt });
             }
           };
         } else if (commandData.args[i].type === 'role') {
@@ -81,17 +81,17 @@ please install "depo"
           
           for (var c = 0; c < filteredTypes.length; c++) {
             if (!args[i] || !msg.roleMentions[c]) {
-              return msg.channel.createMessage(filteredTypes[c].prompt);
+              return msg.channel.send({ content: filteredTypes[c].prompt });
             }
           };
         } else if (commandData.args[i].type === 'user_id' && (!args[i] || this.users.get(args[i]))) {
-          return msg.channel.createMessage(commandData.args[i].prompt);
+          return msg.channel.send({ content: commandData.args[i].prompt });
         } else if (commandData.args[i].type === 'channel_id' && (!args[i] || this.channels.get(args[i]))) {
-          return msg.channel.createMessage(commandData.args[i].prompt);
+          return msg.channel.send({ content: commandData.args[i].prompt });
         } else if (commandData.args[i].type === 'role_id' && (!args[i] || msg.channel.guild && msg.channel.guild.roles.get(args[i]))) {
-          return msg.channel.createMessage(commandData.args[i].prompt);
+          return msg.channel.send({ content: commandData.args[i].prompt });
         } else if (commandData.args[i].type === 'guild_id' && (!args[i] || this.guilds.get(args[i]))) {
-          return msg.channel.createMessage(commandData.args[i].prompt);
+          return msg.channel.send({ content: commandData.args[i].prompt });
         }
       };
 
@@ -112,9 +112,9 @@ please install "depo"
       };
 
       if (commandData.guildOnly && !msg.channel.guild || commandData.dmOnly && msg.channel.type !== 'dm') return;
-      if (commandData.ownerOnly && !this.owners.includes(msg.author.id)) return msg.channel.createMessage(`This is an owner only command!`);
+      if (commandData.ownerOnly && !this.owners.includes(msg.author.id)) return msg.channel.send({ content: `This is an owner only command!` });
 
-      return typeof commandData.reply === 'function' ? commandData.reply.bind(null, msg, argsData)() : msg.channel.createMessage(commandData.reply);
+      return typeof commandData.reply === 'function' ? commandData.reply.bind(null, msg, argsData)() : msg.channel.send({ content: commandData.reply });
     });
   }
 

@@ -102,6 +102,48 @@ class Member {
 
     return new Permissions(permissions);
   }
+
+  /**
+   * Bans the member from the guild
+   * @param {Object} [options] Options for the guild ban
+   * @param {Number} [options.days=0] Number of days to delete messages for
+   * @param {String} [options.reason=''] Reasom for the ban
+   * @returns {Promise<User>}
+   */
+
+  ban(options = { days: 0, reason: '' }) {
+    return this.guild.ban(this.user.id, options);
+  }
+
+  /**
+   * Kicks a member from the guild
+   * @param {String} [reason] The reason for the kick
+   * @returns {Promise<User>}
+   */
+
+  kick(reason) {
+    return this.guild.kick(this.user.id, reason);
+  }
+
+  /**
+   * Softbans a member from the guild
+   * @param {String} [reason] The reason for the softban
+   * @returns {Promise<User>}
+   */
+
+  softban(reason) {
+    return this.guild.softban(this.user.id, reason);
+  }
+
+  /**
+   * Unbans the member from the guild
+   * @param {String} [reason] The reason for the unban
+   * @returns {Promise<User>}
+   */
+
+  unban() {
+    return this.guild.unban(this.user.id, reason);
+  }
 };
 
 module.exports = Member;

@@ -18,7 +18,7 @@ class GuildMembersChunk {
 
     for (var i = 0; i < packet.d.members.length; i++) {
       packet.d.members[i].guild = guild;
-      
+
       guild.members.set(packet.d.members[i].user.id, new Member(shard.client, packet.d.members[i]));
       shard.client.users.set(packet.d.members[i].user.id, new User(shard.client, packet.d.members[i].user));
     };

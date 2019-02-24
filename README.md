@@ -1,144 +1,92 @@
-# Jcord 
-Jcord is an easy to use Discord API Library, Maintained by [KevvyCodes](https://github.com/KevvyCodes/)
+# Jcord
+Jcord is an easy to use Discord API Library Built for NodeJS.
 
 ## Documentation
-- [Stable](https://jcord.js.org/)  
-- [Master](https://jcord.js.org/master)
+- [Stable](https://kevvycodes.me/jcord/) The Documentation for the Stable Version of Jcord  
+- [Master](https://kevvycodes.me/jcord/master/) The Documentation for the Master Version of Jcord  
 
-## How-to
-- [Installation](https://github.com/discord-jcord/jcord/blob/master/README.md#installation)  
-- [Examples](https://github.com/discord-jcord/jcord/blob/master/README.md#examples)
+## Installation  
+Jcord can be install on **any** operating System that has NodeJS 8+  
+If you are willing to install Jcord, please install [NodeJS](https://nodejs.org), i suggest using the LTS Version.  
 
-## Installation
-Jcord can be used on **any** operating system that uses NodeJS.  
-Installing Jcord is pretty easy, and there are two Major versions you can install.  
-
-- [Master](https://github.com/discord-jcord/jcord/blob/master/README.md#master)  
-- [Stable](https://github.com/discord-jcord/jcord/blob/master/README.md#stable)
-
-### Master
-**Warning**: Install Jcord's Master Version can be very buggy, but the benefit from this is it's being updated frequently. We only update the stable version for minor bug fixes and once a version of Master is done.  
-
-If you are willing to install the Master version of Jcord, simply type this into your cmd/terminal: `$ npm install --save discord-jcord/jcord`
+- [Stable](#stable)  
+- [Master](#master)
 
 ### Stable
-If you are willing to install the Latest version of Jcord Stable, simply type this into your cmd/terminal: `$ npm install --save jcord`
+The stable version of Jcord has features that we are sure that won't break, and has no errors whatsoever, if you do overcome an error, open an Issue, and once we have fixed the Issue, install Jcord Master instead.  
+
+`$ npm install --save jcord` - **Stable Version**
+
+### Master
+The master version of Jcord has many features, yet are tend to break. Some of them are already fixed, but some aren't. Since master version always gets new commits, you can simple report something or suggest something, and once we fix it, it will be first pushed to the Master version.  
+
+`$ npm install --save discord-jcord/jcord` - **Master Version**
 
 ## Examples
-JCord has two kinds of Usage, which are the Classic and the Command Creator.  
-If you want to build a flexible bot, i suggest you use the Classic Jcord, while if you're planning to build a bot with simplicity and not that complex, use the Command Creator
+If you are confused on how to use Jcord, here are some examples.
 
-### Classic Usage
+### Stable Usage
+Classic Usage:  
 ```js
-// Require the Jcord package
 const Jcord = require('jcord');
+const client = new Jcord.Client();
 
-// Extend the Jcord#Client class to add properties the right way
-class MyBot extends Jcord.Client {
-  constructor(options) {
-    super(options);
-    this.token = 'Your bot\'s token';
+client.on('SHARD_READY', (shard) => console.log(`Shard #${shard.id} Connected!`));
+
+client.on('READY', () => console.log(`All Shards Connected! Logged in as ${client.user.tag}`));
+
+client.on('MESSAGE_CREATE', (message) => {
+  if (message.content === 'ping') {
+    message.channel.createMessage('pong!');
   }
-};
-
-// Now, make a constant variable for you extended Client
-const client = new MyBot({ shardCount: 'auto' }); // You can still use Jcord#Client options here
-
-/*
-  Listen for the SHARD_READY event.
-  The SHARD_READY event is emitted
-  once a Shard's status becomes ready.
-  */
-
-client.on('SHARD_READY', (shard) => console.log(`Shard ${shard.id} is now ready!`));
-
-/*
-  Listen for the READY event.
-  The READY event is emitted
-  once all Shard are connected
-  to Discord
-  */
-
-client.on('READY', () => console.log(`Ready! All shards connected. Logged in as ${client.user.tag}`));
-
-/*
-  Listen for the MESSAGE_CREATE event.
-  The MESSAGE_CREATE event is emitted
-  once a message is seen by the bot
-  */
-
-client.on('MESSAGE_CREATE', (msg) => {
-  if (msg.channel.type === 'dm') { // If we talk to the bot in dms, it will execute everything inside the brackets
-    if (msg.content === '!ping') {
-      msg.channel.createMessage(`Pong! Shard 0 took ${client.shards.get('0').latency}ms`)
-    }
-  } else {
-    // If the channel type is not dm, execute every code in here
-    if (msg.content === '!ping') {
-      msg.channel.createMessage(`Pong! Shard ${msg.channel.guild.shard.id} took ${msg.channel.guild.shard.latency}ms`)
-    }
-  };
 });
 
-client.initiate(client.token);
-```
+client.initiate('BOT TOKEN');
+```  
 
-### Command Creator Usage
+We also have an Example for the Command Creator 
 ```js
-// Require the Jcord package
 const Jcord = require('jcord');
+const client = new Jcord.CommandCreator();
 
-// Extend the Jcord#CommandCreator class to add properties the right way
-class MyBot extends Jcord.CommandCreator {
-  constructor(options) {
-    super(options);
-    this.token = 'Your bot\'s token';
-  }
-};
+client.on('SHARD_READY', (shard) => console.log(`Shard #${shard.id} Connected!`));
 
-// Now, make a constant variable for you extended Client
-const client = new MyBot({ shardCount: 'auto', defaultPrefix: '!' }); // You can still use Jcord#Client options here
+client.on('READY', () => console.log(`All Shards Connected! Logged in as ${client.user.tag}`));
 
-/*
-  Listen for the SHARD_READY event.
-  The SHARD_READY event is emitted
-  once a Shard's status becomes ready.
-  */
-
-client.on('SHARD_READY', (shard) => console.log(`Shard ${shard.id} is now ready!`));
-
-/*
-  Listen for the READY event.
-  The READY event is emitted
-  once all Shard are connected
-  to Discord
-  */
-
-client.on('READY', () => console.log(`Ready! All shards connected. Logged in as ${client.user.tag}`));
-
-// We can Register a Command to the cache using CommandCreator#registerCommand
 client.registerCommand('ping', 'pong!');
 
-client.initiate(client.token);
-```
+client.initiate('BOT TOKEN');
+```  
 
-## Approved Suggestions
-- MoordMachineYT#1910: Just helped me on some stuff, giving credit  
+### Master Usage
+Classic Usage:  
+```js
+const Jcord = require('jcord');
+const client = new Jcord.Client();
 
-- [x] Whomity ( Discord: Whomity#0001 ) | Suggested the Command Creator and the Args Handler  
+client.on('SHARD_READY', (shard) => console.log(`Shard #${shard.id} Connected!`));
 
-- [x] Xignotix ( Discord: Xignotic#0001 ) | Suggested Custom Logging Design  
+client.on('READY', () => console.log(`All Shards Connected! Logged in as ${client.user.tag}`));
 
-*Want your own Feature added? Join our [Discord Chat](https://discord.gg/JK8xDJQ) And suggest today!*
+client.on('MESSAGE_CREATE', (message) => {
+  if (message.content === 'ping') {
+    message.channel.send({ content: 'pong!' });
+  }
+});
 
-## To-do List
-- [x] Internal Sharding  
-- [x] Disconnection Handling  
-- [x] Make code readable  
-- [x] Seperate events in multiple files  
-- [ ] Update `Client#PRESENCE_UPDATE`  
-- [ ] Rate limit handler  
-- [ ] Voice Support ***soon*** 
+client.initiate('BOT TOKEN');
+```  
 
-## Supporters
-Thanks to the people of [Plexi Development](https://discord.gg/plexidev) and [Tabby Deveopment](https://discord.gg/XyaDTyB) for supporting this Project! Make sure to join their servers.
+We also have an Example for the Command Creator
+```js
+const Jcord = require('jcord');
+const client = new Jcord.CommandCreator();
+
+client.on('SHARD_READY', (shard) => console.log(`Shard #${shard.id} Connected!`));
+
+client.on('READY', () => console.log(`All Shards Connected! Logged in as ${client.user.tag}`));
+
+client.registerCommand('ping', 'pong!');
+
+client.initiate('BOT TOKEN');
+```  

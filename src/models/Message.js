@@ -68,7 +68,6 @@ class Message {
    * @param {Object} options Options for the message editing
    * @param {String} options.content The content of the message
    * @param {Embed} options.embed The embed for the message
-   * @param {Snowflake} options.message The id of the message
    * @returns {Promise<Message>}
    */
 

@@ -229,7 +229,7 @@ class Guild extends UnavailableGuild {
   /**
    * Kicks a member from the guild
    * @param {Snowflake} user The id of the member to kick
-   * @param {String} reason The reason for the kick
+   * @param {String} [reason] The reason for the kick
    * @returns {Promise<User>}
    */
 

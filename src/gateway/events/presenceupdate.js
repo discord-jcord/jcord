@@ -22,7 +22,7 @@ class PresenceUpdate {
 
         shard.client.emit('USER_UPDATE', oldUser, newUser);
       };
-    }
+    };
   }
 };
 
