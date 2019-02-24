@@ -279,21 +279,21 @@ class Client extends EventEmitter {
   /**
    * Edits a message
    * @param {Snowflake} channel The id of the channel
+   * @param {Snowflake} message The id of the message
    * @param {Object} options Options for the message editing
    * @param {String} options.content The content of the message
    * @param {Embed} options.embed The embed for the message
-   * @param {Snowflake} options.message The id of the message
    * @returns {Promise<Message>}
    */
 
-  patchMessage(channel, options = {}) {
-    return this.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(channel, options.message), {
+  patchMessage(channel, message, options = {}) {
+    return this.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(channel, message), {
       data: {
         content: options.content || null,
         embed: options.embed ? (options.embed.hasOwnProperty('embed') ? options.embed.embed : options.embed) : null
       }
     }).then(res => {
-      return new Message(this.client, res.data);
+      return new Message(this, res.data);
     });
   }
 
