@@ -351,7 +351,7 @@ class Client extends EventEmitter {
     return this.rest.request('POST', ENDPOINTS.CHANNEL_MESSAGES(channel), {
       data: {
         content: options.content || null,
-        embed: (embed.hasOwnProperty('embed') ? embed.embed : embed) || null
+        embed: (options.embed.hasOwnProperty('embed') ? options.embed.embed : options.embed) || null
       }
     }).then(res => {
       return new Message(this, res.data);
