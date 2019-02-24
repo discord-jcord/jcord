@@ -73,6 +73,8 @@ class Client extends EventEmitter {
     Object.defineProperty(this, 'connectedShards', { value: new Store() });
     Object.defineProperty(this, 'token', { value: null, writable: true });
     Object.defineProperty(this, 'presence', { value: client_activity, writable: true });
+    Object.defineProperty(this, '_presences', { value: new Store() });
+    Object.defineProperty(this, 'deprecator', { value: require('../utils/Deprecator') });
 
     for (var i of Object.entries(PERMISSIONS)) {
       this.permissions.set(i[0], i[1]);
@@ -121,6 +123,50 @@ class Client extends EventEmitter {
   }
 
   /**
+   * Creates an embed to a channel
+   * @deprecated Use Client#sendMessage() instead.
+   * @param {Snowflake} channel The id of the channel to send a message to
+   * @param {Object} embed The embed to send
+   * @returns {Promise<Message>}
+   */
+
+  createEmbed(channel, embed) {
+    this.deprecator.deprecate('Client', 'createEmbed', 'Client', 'sendMessage');
+    return this.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel), {
+      data: {
+        embed: embed.hasOwnProperty('embed') ? embed.embed : embed
+      }
+    }).then(res => {
+      return new Message(this, res.data);
+    });
+  }
+
+  /**
+   * Creates a message to a channel
+   * @deprecated Use Client#sendMessage() instead.
+   * @param {Snowflake} channel The id of the channel to send a message to
+   * @param {String} content The content to send
+   * @returns {Promise<Message>}
+   */
+
+  createMessage(channel, content) {
+    this.deprecator.deprecate('Client', 'createMessage', 'Client', 'sendMessage');
+    if (content && content.length > 2000) return this.emit('error', new Error('Message length must be equal to or less than 2000 Characters!'));
+
+    if (this.disableEveryone) {
+      content = content.replace(/@everyone/g, '@\u200beveryone');
+    };
+
+    return this.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel), {
+      data: {
+        content
+      }
+    }).then(res => {
+      return new Message(this, res.data);
+    });
+  }
+
+  /**
    * Fetches the user from cache, if it doesn't exist use the REST API to fetch it and add to the cache
    * @param {Snowflake} user The id of the user to fetch
    * @returns {Promise<User>}
@@ -149,46 +195,6 @@ class Client extends EventEmitter {
     return this.rest.request("DELETE", ENDPOINTS.GUILD(guild))
     .then(() => {
       return true;
-    });
-  }
-
-  /**
-   * Creates an embed to a channel
-   * @param {Snowflake} channel The id of the channel to send a message to
-   * @param {Object} embed The embed to send
-   * @returns {Promise<Message>}
-   */
-
-  createEmbed(channel, embed) {
-    return this.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel), {
-      data: {
-        embed: embed.hasOwnProperty('embed') ? embed.embed : embed
-      }
-    }).then(res => {
-      return new Message(this, res.data);
-    });
-  }
-
-  /**
-   * Creates a message to a channel
-   * @param {Snowflake} channel The id of the channel to send a message to
-   * @param {String} content The content to send
-   * @returns {Promise<Message>}
-   */
-
-  createMessage(channel, content) {
-    if (content && content.length > 2000) return this.emit('error', new Error('Message length must be equal to or less than 2000 Characters!'));
-
-    if (this.disableEveryone) {
-      content = content.replace(/@everyone/g, '@\u200beveryone');
-    };
-
-    return this.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel), {
-      data: {
-        content
-      }
-    }).then(res => {
-      return new Message(this, res.data);
     });
   }
   
@@ -271,6 +277,27 @@ class Client extends EventEmitter {
   }
 
   /**
+   * Edits a message
+   * @param {Snowflake} channel The id of the channel
+   * @param {Object} options Options for the message editing
+   * @param {String} options.content The content of the message
+   * @param {Embed} options.embed The embed for the message
+   * @param {Snowflake} options.message The id of the message
+   * @returns {Promise<Message>}
+   */
+
+  patchMessage(channel, options = {}) {
+    return this.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(channel, options.message), {
+      data: {
+        content: options.content || null,
+        embed: (embed.hasOwnProperty('embed') ? embed.embed : embed) || null
+      }
+    }).then(res => {
+      return new Message(this.client, res.data);
+    });
+  }
+
+  /**
    * Make your own log with your own type and color
    * @param {String} type The type of the log, can be anything
    * @param {String} color The color of the type
@@ -306,6 +333,29 @@ class Client extends EventEmitter {
     console.log(`[${this.chalk.rgb(options.red, options.green, options.blue)(type)}]: ${message}`);
 
     return options;
+  }
+
+  /**
+   * Sends a message to a channel
+   * @param {Snowflake} channel 
+   * @param {Object} options 
+   * @param {String} [options.content] The content of the message
+   * @param {Embed} [options.embed] The embed object of the message
+   * @returns {Promise<Message>}
+   */
+
+  sendMessage(channel, options = {}) {
+    if (options.content && typeof options.content === 'string' && options.content.length > 2000)
+      return this.emit('error', new RangeError('Maximum of 2000 Characters for Content has been reached!'));
+
+    return this.rest.request('POST', ENDPOINTS.CHANNEL_MESSAGES(channel), {
+      data: {
+        content: options.content || null,
+        embed: (embed.hasOwnProperty('embed') ? embed.embed : embed) || null
+      }
+    }).then(res => {
+      return new Message(this, res.data);
+    });
   }
 
   /**
