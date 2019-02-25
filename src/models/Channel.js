@@ -2,6 +2,7 @@ const { CHANNEL_TYPES } = require('../utils/Constants');
 
 /**
  * @class Represents a Channel
+ * @prop {Number} createdTimestamp Timestamp of when the channel was created
  * @prop {Snowflake} id The id of the channel
  * @prop {String} type The type of the channel
  * * `text` If the channel is a text channel
@@ -18,6 +19,22 @@ class Channel {
     this.id = data.id;
     this.mention = `<#${this.id}>`;
     this.type = CHANNEL_TYPES[data.type];
+  }
+
+  get createdTimestamp() {
+    return new Date((this.id / 4194304) + 1420070400000).getTime()
+  }
+
+  /**
+   * Closes a channel
+   * @returns {Promise<DMChannel|TextChannel|VoiceChannel|CategoryChannel>}
+   */
+
+  close() {
+    return this.client.rest.request("DELETE", ENDPOINTS.CHANNEL(this.id))
+    .then(() => {
+      return this;
+    });
   }
 
   toString() {

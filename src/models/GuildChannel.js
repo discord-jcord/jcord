@@ -121,18 +121,6 @@ class GuildChannel extends Channel {
   }
 
   /**
-   * Closes a channel
-   * @returns {Promise<TextChannel|VoiceChannel|CategoryChannell>}
-   */
-
-  close() {
-    return this.client.rest.request("DELETE", ENDPOINTS.CHANNEL(this.id))
-    .then(() => {
-      return this;
-    });
-  }
-
-  /**
    * Creates an invite for the guild channel
    * @param {Object} [options] Options for creating the invite
    * @param {Number} [options.maxAge=86400] Duration of invite in seconds, or 0 for never

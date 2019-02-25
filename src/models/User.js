@@ -5,6 +5,7 @@ const { ENDPOINTS } = require('../utils/Constants').HTTP;
  * @prop {String?} avatar The avatar hash of the user
  * @prop {String} avatarURL The url of the user's avatar
  * @prop {Boolean} bot Whether the user is a bot or not
+ * @prop {Number} createdTimestamp Timestamp of when the user account was created
  * @prop {String} discriminator The discriminator of the user
  * @prop {Snowflake} id The id of the user
  * @prop {String} tag The tag of the user
@@ -23,6 +24,10 @@ class User {
     this.mention = `<@${this.id}>`;
     this.tag = `${data.username}#${this.discriminator}`;
     this.username = data.username;
+  }
+
+  get createdTimestamp() {
+    return new Date((this.id / 4194304) + 1420070400000).getTime()
   }
 
   get presence() {
