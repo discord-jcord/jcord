@@ -20,17 +20,17 @@ class CommandCreator extends Client {
     this.owners = options.owners || [];
     this.customPrefix = options.customPrefix || false;
 
-    let depo = null;
+    let endb = null;
 
     if (this.customPrefix) {
       try {
-        require('depo');
-        depo = (this.db = new (require('depo')).Database({ name: 'jcord' }));
+        require('endb');
+        endb = (this.db = new (require('endb')).Database({ name: 'jcord' }));
       } catch(error) {
-        depo = null;
+        endb = null;
         this.emit('error', new Error(`
 If you would want to get the current guild prefix,
-please install "depo"
+please install "endb"
 `));
       }
     }
@@ -38,7 +38,7 @@ please install "depo"
     if (!Array.isArray(this.owners)) return this.emit('error', new Error('CommandCreator#owners must be an array!'));
     
     this.on('MESSAGE_CREATE', async (msg) => {
-      if (depo && msg.channel.guild && !await this.db.has(msg.channel.guild.id)) {
+      if (endb && msg.channel.guild && !await this.db.has(msg.channel.guild.id)) {
       await this.db.set(msg.channel.guild.id, { prefix: this.defaultPrefix });
       }
 
