@@ -68,7 +68,7 @@ class RequestHandler {
           break;
 
         default:
-          this.client.emit('debug', error.reason);
+          this.client.emit('debug', { shard: 'REST', message: `Received unknown status code: ${error.response.status}` });
           break;
       };
     }
