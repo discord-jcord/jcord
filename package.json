@@ -11,7 +11,7 @@
     "uws": "^99.0.0",
     "depo": "0.0.3",
     "chalk": "^2.4.2",
-    "endb": "^0.0.2"
+    "endb": "^0.0.4"
   },
   "scripts": {
     "test": "node test/",
