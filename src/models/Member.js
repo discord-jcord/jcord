@@ -92,9 +92,11 @@ class Member {
     let role_everyone = this.guild.roles.get(this.guild.id);
     let permissions = role_everyone.permissions;
 
-    this.roles.forEach(role => {
+    for (var [, role] of this.roles) {
+      if (!role) continue;
+
       permissions |= role.permissions;
-    });
+    }
 
     if ((permissions & 0x00000008) === 0x00000008) {
       return new Permissions(8);
