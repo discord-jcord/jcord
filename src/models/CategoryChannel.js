@@ -2,6 +2,7 @@ const GuildChannel = require('./GuildChannel');
 
 /**
  * @extends GuildChannel Represents a channel category
+ * @prop {Number} createdTimestamp Timestamp of when the channel was created
  * @prop {Array?} children Returns an array of channels that has the category as it's parent
  */
 

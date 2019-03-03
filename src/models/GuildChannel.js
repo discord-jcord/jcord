@@ -9,6 +9,7 @@ const Store = require('../utils/Store');
 
 /**
  * @extends Channel Represents a Guild Channel
+ * @prop {Number} createdTimestamp Timestamp of when the channel was created
  * @prop {Guild} guild The guild the channel is in
  * @prop {Snowflake} id The id of the guild channel
  * @prop {String} name The name of the guild channel

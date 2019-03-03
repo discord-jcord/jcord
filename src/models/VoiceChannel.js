@@ -2,6 +2,7 @@ const GuildChannel = require('./GuildChannel');
 
 /**
  * @extends GuildChannel Represents a guild voice channel
+ * @prop {Number} createdTimestamp Timestamp of when the channel was created
  * @prop {Number?} bitrate The bitrate (in bits) of the voice channel
  * @prop {Number?} userLimit The amount of members allowed to join the voice channel
  * @prop {Snowflake?} parentID The id of the category the channel is in

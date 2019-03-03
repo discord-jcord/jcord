@@ -7,6 +7,7 @@ const Store = require('../utils/Store');
 
 /**
  * @extends GuildChannel Represens a Guild Text Channel.
+ * @prop {Number} createdTimestamp Timestamp of when the channel was created
  * @prop {Number} rateLimitPerUser Amount of seconds a user has to wait before sending another message (0-120); bots, as well as users with the permission `manage_messages` or `manage_channel`, are unaffected
  * @prop {String?} topic The topic of the text channel.
  * @prop {Snowflake?} lastMessageID The id of the last message sent

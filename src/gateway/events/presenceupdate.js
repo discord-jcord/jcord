@@ -22,7 +22,35 @@ class PresenceUpdate {
 
         shard.client.emit('USER_UPDATE', oldUser, newUser);
       };
-    };
+    } else {
+      let OldPresence = shard.client._presences.get(packet.d.user.id)
+      let newPresence = shard.client._presences.set(packet.d.user.id, packet.d);
+
+      if (!OldPresence || OldPresence.status === newPresence.status) return;
+
+      let old_data = {
+        status: OldPresence.status,
+        game: OldPresence.game
+      };
+
+      let new_data = {
+        status: newPresence.status,
+        game: newPresence.game
+      }
+
+      /**
+       * Emitted once a User updates his Status
+       * @event Client.PRESENCE_UPDATE
+       * @prop {Object} old_data The old presence data
+       * @prop {String} old_data.status The old status
+       * @prop {Object?} old_data.game The old activity data
+       * @prop {Object} old_data The new presence data
+       * @prop {String} old_data The new status
+       * @prop {Object?} old_data The new activity data
+       */
+
+      shard.client.emit('PRESENCE_UPDATE', old_data, new_data);
+    }
   }
 };
 

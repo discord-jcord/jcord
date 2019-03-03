@@ -7,6 +7,7 @@ const { ENDPOINTS } = require('../utils/Constants').HTTP;
 
 /**
  * @extends Channel Represens a DM Channel.
+ * @prop {Number} createdTimestamp Timestamp of when the channel was created
  * @prop {Snowflake?} lastMessageID The id of the last message sent
  * @prop {Array<User>} recipients An array of user recipients on the DM Channel
  */
