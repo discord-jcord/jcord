@@ -44,9 +44,9 @@ class PresenceUpdate {
        * @prop {Object} old_data The old presence data
        * @prop {String} old_data.status The old status
        * @prop {Object?} old_data.game The old activity data
-       * @prop {Object} old_data The new presence data
-       * @prop {String} old_data The new status
-       * @prop {Object?} old_data The new activity data
+       * @prop {Object} new_data The new presence data
+       * @prop {String} new_data.status The new status
+       * @prop {Object?} new_data.game The new activity data
        */
 
       shard.client.emit('PRESENCE_UPDATE', old_data, new_data);
